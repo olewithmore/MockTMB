@@ -35,7 +35,7 @@ class Login extends Component {
             </Row>
           </Row>
           <Row className="justify-content-center">
-            <p style={style.discriptions}>Sign in to TMB Search System</p>
+            <p style={style.discriptions}>Sign in to TMB System</p>
           </Row>
           <Row className="justify-content-center">
             <Col md="4">

@@ -8,6 +8,22 @@
 
 // If you want to add something do it here
 @import "custom";
+.sidebar .sidebar-minimizer {
+  display: none
+}
+//
+.sidebar, .sidebar .nav, .scrollbar-container.sidebar-nav.ps  {
+  width: 250px !important;
+}
+//
+html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .main,
+html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .app-footer {
+  margin-left: 250px;
+}
+//
+html:not([dir="rtl"]) .sidebar {
+  margin-left: -250px; }
+
 
 // ie fixes
 @import "ie-fix";

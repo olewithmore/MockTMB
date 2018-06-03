@@ -33,7 +33,7 @@ class App extends Component {
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/dashboard" name="Page 500" component={DefaultLayout} />
-          <Route path="/" name="Home" component={Login} />
+          <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </HashRouter>
     );

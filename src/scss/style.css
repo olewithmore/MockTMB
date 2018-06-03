@@ -10070,5 +10070,18 @@ body {
 .app-header .navbar-nav .dropdown-menu-right {
   right: auto; }
 
+.sidebar .sidebar-minimizer {
+  display: none; }
+
+.sidebar, .sidebar .nav, .scrollbar-container.sidebar-nav.ps {
+  width: 250px !important; }
+
+html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .main,
+html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .app-footer {
+  margin-left: 250px; }
+
+html:not([dir="rtl"]) .sidebar {
+  margin-left: -250px; }
+
 html body .app.flex-row.align-items-center {
   height: 100vh; }
