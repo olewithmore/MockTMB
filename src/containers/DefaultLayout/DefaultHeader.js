@@ -39,13 +39,14 @@ class DefaultHeader extends Component {
           {/*</NavItem>*/}
         {/*</Nav>*/}
         <Nav className="ml-auto" navbar>
+          <DefaultHeaderDropdown accnt/>
+          <span>Firstname Lastname &nbsp;&nbsp;&nbsp;</span>
           {/*<DefaultHeaderDropdown notif/>*/}
           {/*<DefaultHeaderDropdown tasks/>*/}
           {/*<DefaultHeaderDropdown mssgs/>*/}
           {/*<NavItem className="d-md-down-none">*/}
             {/*<NavLink href="#"><i className="icon-location-pin"></i></NavLink>*/}
           {/*</NavItem>*/}
-          {/*<DefaultHeaderDropdown accnt/>*/}
         </Nav>
         {/*<AppAsideToggler className="d-md-down-none" />*/}
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
