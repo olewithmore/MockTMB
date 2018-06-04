@@ -1,8 +1,8 @@
 export default {
   items: [
     {
-      name: 'ค้นหา หลักประกัน/ ลูกค้า/ สัญญา',
-      url: '/theme/colors',
+      name: 'ค้นหา ลูกค้า/ หลักประกัน/ สัญญา',
+      url: '/search-dashboard',
       icon: 'icon-magnifier',
     },
     {

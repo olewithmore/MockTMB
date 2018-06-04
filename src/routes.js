@@ -8,6 +8,10 @@ function Loading() {
   return <div>Loading...</div>;
 }
 
+const SearchDashboard = Loadable({loader: () => import('./containers/SearchDashboard/SearchDashboard'),
+  loading: Loading,
+  });
+
 const Compose = Loadable({
   loader: () => import('./views/Apps/Email/Compose'),
   loading: Loading,
@@ -243,6 +247,7 @@ const Widgets = Loadable({
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', name: 'Home', component: DefaultLayout, exact: true },
+  { path: '/search-dashboard', name: 'SearchDashboard', component: SearchDashboard, exact: true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
