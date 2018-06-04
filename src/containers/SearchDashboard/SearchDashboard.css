@@ -2,7 +2,8 @@ label.switch {
     margin-bottom: 0px;
 }
 
-.resultProfileImg {
+.resultProfileImg,
+.labelSearch {
     text-align: right;
 }
 
@@ -21,4 +22,28 @@ label.switch {
 
 .chartContainer {
     text-align: center;
+}
+
+#collapseSearchForm input:not([role="combobox"]):focus {
+    outline: none;
+    background: #d6f7ff;
+    border-color: #0014df;
+}
+
+#collapseSearchForm input:not([role="combobox"]) {
+    padding: 0.15rem 0.5rem;
+}
+
+#collapseSearchForm .Select-input,
+#collapseSearchForm .Select-control{
+    height: 24px;
+}
+
+#collapseSearchForm .Select-placeholder,
+#collapseSearchForm .Select-value{
+    line-height: 26px;
+}
+
+.test {
+    color: #00aced;
 }

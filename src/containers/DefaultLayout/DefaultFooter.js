@@ -15,7 +15,7 @@ class DefaultFooter extends Component {
 
     return (
       <React.Fragment>
-        <span>&copy; 2018 Baiwa.</span>
+        <span>&copy; สงวนลิขสิทธิ์ 2561 ธนาคารทหารไทย จำกัด (มหาชน)</span>
         {/*<span className="ml-auto">Powered by <a href="https://coreui.io/react">CoreUI for React</a></span>*/}
       </React.Fragment>
     );

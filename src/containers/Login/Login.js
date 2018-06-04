@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import logo from '../../assets/logo/logo_tmb.png';
+import logo from '../../assets/logo/logo-tmb-login.png';
 import './Login.css';
 
 class Login extends Component {
@@ -22,7 +22,7 @@ class Login extends Component {
         'fontSize': '20px'
       },
       container: {
-        'marginTop': '25px'
+        'marginTop': '35px'
       }
     };
 
@@ -31,18 +31,17 @@ class Login extends Component {
         <Container>
           <Row className="justify-content-center" style={style.blockLogo}>
             <Row>
-              <img src={logo} width="120px" height="60px" alt=""/>
+              <img src={logo} height="80px" alt=""/>
             </Row>
           </Row>
           <Row className="justify-content-center">
-            <p style={style.discriptions}>Sign in to TMB System</p>
           </Row>
           <Row className="justify-content-center">
             <Col md="4">
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
-                    <p style={style.label}>Username</p>
+                    <p style={style.label}>เข้าสู่ระบบ</p>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -51,7 +50,6 @@ class Login extends Component {
                       </InputGroupAddon>
                       <Input type="text" placeholder="Username" />
                     </InputGroup>
-                    <p style={style.label}>Password</p>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>

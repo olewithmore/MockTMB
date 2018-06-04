@@ -8,10 +8,21 @@
 
 // If you want to add something do it here
 @import "custom";
-.sidebar .sidebar-minimizer {
-  display: none
+.sidebar {
+  background-color: #15567f;
 }
 
+.sidebar .nav-link.active {
+  background-color: #20a8d8;
+}
+
+.sidebar .nav-link.active .nav-icon {
+  color: white;
+}
+
+.sidebar .sidebar-minimizer {
+  display: none;
+}
 
 @media screen and (min-width: 800px) {
   //

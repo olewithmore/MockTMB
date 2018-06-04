@@ -10070,6 +10070,15 @@ body {
 .app-header .navbar-nav .dropdown-menu-right {
   right: auto; }
 
+.sidebar {
+  background-color: #15567f; }
+
+.sidebar .nav-link.active {
+  background-color: #20a8d8; }
+
+.sidebar .nav-link.active .nav-icon {
+  color: white; }
+
 .sidebar .sidebar-minimizer {
   display: none; }
 

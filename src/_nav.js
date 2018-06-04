@@ -12,7 +12,7 @@ export default {
     },
     {
       name: 'พิธีการสินเชื่อ',
-      url: '/theme/colors',
+      url: '/theme/typography',
       icon: 'icon-credit-card',
     },
     {
