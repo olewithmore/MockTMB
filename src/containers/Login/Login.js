@@ -6,7 +6,7 @@ import './Login.css';
 class Login extends Component {
 
   onLogin () {
-    this.props.history.push('/dashboard');
+    this.props.history.push('/search-dashboard');
   }
 
   render() {
