@@ -6,7 +6,7 @@ export default {
       icon: 'icon-magnifier',
     },
     {
-      name: 'ประเมิณราคา',
+      name: 'ประเมินราคา',
       url: '/theme/colors',
       icon: 'icon-note',
     },

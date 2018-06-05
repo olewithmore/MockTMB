@@ -21,10 +21,10 @@ class TooltipItem extends React.Component {
     return (
       <span>
         <Button className="mr-1" color="secondary" id={'Tooltip-' + this.props.id}>
-          {this.props.item.text}
+          <b>OLE</b>
         </Button>
         <Tooltip placement={this.props.item.placement} isOpen={this.state.tooltipOpen} target={'Tooltip-' + this.props.id} toggle={this.toggle}>
-          Tooltip Content!
+          <b>OLE</b>
         </Tooltip>
       </span>
     );
@@ -42,7 +42,7 @@ class Tooltips extends Component {
       tooltips: [
         {
           placement: 'top',
-          text: 'Top',
+          text: '<b>Top</b>',
         },
         {
           placement: 'bottom',

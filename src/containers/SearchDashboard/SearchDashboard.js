@@ -20,6 +20,7 @@ import {
   DropdownToggle,
   Form,
   Table,
+  Tooltip,
   FormGroup,
   FormText,
   FormFeedback,
@@ -29,10 +30,34 @@ import {
   InputGroupText,
   Label,
   Row,
+  Pagination,
+  PaginationItem,
+  PaginationLink
 } from 'reactstrap';
 
 import { AppSwitch } from '@coreui/react'
 import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
+
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB1jGkJEp4wHaMXoAw09ANQ8R_Hcnhb844&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `250px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withScriptjs,
+  withGoogleMap
+)((props) =>
+  <GoogleMap
+    defaultZoom={9}
+    defaultCenter={{ lat: 17.1546831, lng: 102.2765978 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: 17.1546831, lng: 102.2765978 }} onClick={props.onMarkerClick} />}
+  </GoogleMap>
+);
 
 const doughnut = {
   labels: [
@@ -100,12 +125,15 @@ class SearchDashboard extends Component {
         guaranteeType: "",
         docType: "",
         statusType: "",
-        actType: ""
+        actType: "",
+        tooltipGuaranteeOpen:  false,
+        tooltipContactOpen: false
     };
 
     this.formUpdateFactory = this.formUpdateFactory.bind(this);
     this.formToggleShowSearch = this.formToggleShowSearch.bind(this);
     this.chooseGuaranteeType = this.chooseGuaranteeType.bind(this);
+    this.setTooltips = this.setTooltips.bind(this);
   }
 
   formToggleShowSearch(key) {
@@ -142,6 +170,14 @@ class SearchDashboard extends Component {
       tempObject[key] = v;
       this.setState(tempObject);
     };
+  }
+
+  setTooltips(key){
+    return () => {
+      let tempObject = {...this.state};
+      tempObject[key] = !tempObject[key];
+      this.setState(tempObject);
+    }
   }
 
 
@@ -295,7 +331,106 @@ class SearchDashboard extends Component {
                       <td>1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170</td>
                       <td>10,000,000</td>
                       <td>01/01/2561</td>
-                      <td>000001 ที่ดิน</td>
+                      <td>
+                        <span id="testTooltips">000001 ที่ดิน</span>
+                        <Tooltip placement="left" isOpen={this.state.tooltipGuaranteeOpen} target={'testTooltips'} toggle={this.setTooltips("tooltipGuaranteeOpen")}>
+                          <div className="tooltipDetail">
+                            <ul>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    ชื่อ-นามสกุล :
+                                  </Col>
+                                  <Col xs="8">
+                                    นายขอกู้ ธนาคาร
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    บัตรประชาชน :
+                                  </Col>
+                                  <Col xs="8">
+                                    3 2456 77890 98 7
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    ที่อยู่ตามทะเบียน :
+                                  </Col>
+                                  <Col xs="8">
+                                    59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    สถานะ :
+                                  </Col>
+                                  <Col xs="8">
+                                    โสด
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    วัน/เดือน/ปี เกิด :
+                                  </Col>
+                                  <Col xs="8">
+                                    20 มิถุนายน 2520
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    อายุ :
+                                  </Col>
+                                  <Col xs="8">
+                                    41 ปี
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    อาชีพ :
+                                  </Col>
+                                  <Col xs="8">
+                                    พนักงานบริษัทเอกชน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    คู่สมรส :
+                                  </Col>
+                                  <Col xs="8">
+                                    นางขอกู้ร่วม ธนาคาร
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    เบอร์ติดต่อ :
+                                  </Col>
+                                  <Col xs="8">
+                                    096-234-5632
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                            <MyMapComponent isMarkerShown={true}></MyMapComponent>
+                          </div>
+                        </Tooltip>
+                      </td>
                     </tr>
                     <tr>
                       <td>2</td>
@@ -307,6 +442,30 @@ class SearchDashboard extends Component {
                     </tr>
                     </tbody>
                   </Table>
+                  <hr/>
+                  <Pagination size="sm" className="paginationDataQuarantee justify-content-end">
+                    <PaginationItem>
+                      <PaginationLink previous tag="button" />
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink tag="button">
+                        1
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink tag="button">
+                        2
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink tag="button">
+                        3
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink next tag="button" />
+                    </PaginationItem>
+                  </Pagination>
                 </CardBody>
               </Card>
             </Col>
@@ -341,7 +500,105 @@ class SearchDashboard extends Component {
                       <td>10/01/25561</td>
                       <td>5,000,000</td>
                       <td>สินเชื่อรายย่อย</td>
-                      <td>AR-000001</td>
+                      <td>
+                        <span id="testTooltips2">AR-000001</span>
+                        <Tooltip placement="left" isOpen={this.state.tooltipContactOpen} target={'testTooltips2'} toggle={this.setTooltips("tooltipContactOpen")}>
+                          <div className="tooltipDetail">
+                            <ul>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    ชื่อ-นามสกุล :
+                                  </Col>
+                                  <Col xs="8">
+                                    นายขอกู้ ธนาคาร
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    บัตรประชาชน :
+                                  </Col>
+                                  <Col xs="8">
+                                    3 2456 77890 98 7
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    ที่อยู่ตามทะเบียน :
+                                  </Col>
+                                  <Col xs="8">
+                                    59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    สถานะ :
+                                  </Col>
+                                  <Col xs="8">
+                                    โสด
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    วัน/เดือน/ปี เกิด :
+                                  </Col>
+                                  <Col xs="8">
+                                    20 มิถุนายน 2520
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    อายุ :
+                                  </Col>
+                                  <Col xs="8">
+                                    41 ปี
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    อาชีพ :
+                                  </Col>
+                                  <Col xs="8">
+                                    พนักงานบริษัทเอกชน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    คู่สมรส :
+                                  </Col>
+                                  <Col xs="8">
+                                    นางขอกู้ร่วม ธนาคาร
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    เบอร์ติดต่อ :
+                                  </Col>
+                                  <Col xs="8">
+                                    096-234-5632
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </div>
+                        </Tooltip>
+                      </td>
                       <td>000010153</td>
                       <td>1111/2561</td>
                       <td>10/01/25561</td>
@@ -370,7 +627,6 @@ class SearchDashboard extends Component {
 
     return (
       <div className="animated fadeIn">
-
         <Row>
           <div className="col-md-3 offset-md-3">
             {/*<button type="button" className="btn btn-primary btn-block">Search</button>*/}
@@ -379,8 +635,7 @@ class SearchDashboard extends Component {
             <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>Search</button>
           </div>
         </Row>
-        <br/>
-
+        <hr/>
         <Row>
           <Col xs="12" sm="12" lg="12">
             <Card>
@@ -500,6 +755,14 @@ class SearchDashboard extends Component {
                           options={dataSelect2.typeAct}
                           onChange={this.chooseGuaranteeType("actType")}
                         />
+                      </Col>
+                    </FormGroup>
+                    <FormGroup row>
+                      <Col md="2" className="labelSearch">
+                        วันที่ทำสัญญา
+                      </Col>
+                      <Col md="5">
+                        <Input type="date" className="form-control-sm" />
                       </Col>
                     </FormGroup>
                     <FormGroup row>

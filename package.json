@@ -33,7 +33,7 @@
     "react-codemirror2": "^5.0.1",
     "react-dates": "16.6.1",
     "react-dom": "^16.3.2",
-    "react-google-maps": "9.4.5",
+    "react-google-maps": "^9.4.5",
     "react-ladda": "6.0.0",
     "react-loadable": "^5.4.0",
     "react-quill": "1.2.7",
@@ -44,6 +44,7 @@
     "react-text-mask-hoc": "^0.10.6",
     "react-toastify": "^4.0.1",
     "reactstrap": "^6.0.1",
+    "recompose": "^0.27.1",
     "simple-line-icons": "^2.4.1",
     "spinkit": "1.2.5"
   },
