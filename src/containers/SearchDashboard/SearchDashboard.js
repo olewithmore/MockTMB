@@ -131,7 +131,7 @@ class SearchDashboard extends Component {
         tooltipGuaranteeOpen:  false,
         tooltipContactOpen: false,
         viewData: true,
-        activeTab: "2"
+        activeTab: "3"
     };
 
     this.formUpdateFactory = this.formUpdateFactory.bind(this);
@@ -2040,11 +2040,366 @@ class SearchDashboard extends Component {
                 </Row>
               </TabPane>
               <TabPane tabId="3">
-                2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                officia deserunt mollit anim id est laborum.
+                <Row>
+                  <Col xs="12">
+                    <Card>
+                      <CardHeader>
+                        <strong>3.1 รายละเอียดราคาประเมิน</strong>
+                      </CardHeader>
+                      <CardBody>
+                        <Row>
+                          <Col xs="12" md="6">
+                            <ul className="data-detail-first">
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    วันที่ประเมิน :
+                                  </Col>
+                                  <Col xs="7">
+                                    01/04/2561
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ราคาที่ประเมิน :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ราคาประเมิน (Original) :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ประเภทการประเมิน :
+                                  </Col>
+                                  <Col xs="7">
+                                    ประเมินภายใน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Marget Price :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    มูลค่าสปส.ทำประกัน :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    วันที่ประเมินครั้งก่อน :
+                                  </Col>
+                                  <Col xs="7">
+                                    01/04/2560
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ราคาประเมินครั้งก่อน :
+                                  </Col>
+                                  <Col xs="7">
+                                    9,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ประเภทการประเมินครั้งก่อน :
+                                  </Col>
+                                  <Col xs="7">
+                                    ประเมินภายใน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ความถี่ในการประเมิน :
+                                  </Col>
+                                  <Col xs="7">
+                                    6 เดือน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    หมายเลขงานประเมิน :
+                                  </Col>
+                                  <Col xs="7">
+                                    000001
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Key By :
+                                  </Col>
+                                  <Col xs="7">
+                                    AUTO
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    สาขา/ฝ่ายงาน :
+                                  </Col>
+                                  <Col xs="7">
+                                    0001
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    เป็นหลักประกันร่วม :
+                                  </Col>
+                                  <Col xs="7">
+                                    ไม่ใช่
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    จำนวนลูก :
+                                  </Col>
+                                  <Col xs="7">
+                                    2 คน
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </Col>
+                          <Col xs="12" md="6">
+                            <ul className="data-detail">
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    เลขที่ซอง :
+                                  </Col>
+                                  <Col xs="7">
+                                    000001
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    สถานที่เก็บรักษา :
+                                  </Col>
+                                  <Col xs="7">
+                                    -
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Marget Price Original :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    มูลค่าสปส.ทำประกัน Original :
+                                  </Col>
+                                  <Col xs="7">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Key Date :
+                                  </Col>
+                                  <Col xs="7">
+                                    01/01/2559
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Update By :
+                                  </Col>
+                                  <Col xs="7">
+                                    10001 - นายธนาคาร ซื่อสัตย์
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    Update Date :
+                                  </Col>
+                                  <Col xs="7">
+                                    01/01/2559
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </Col>
+                        </Row>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs="12">
+                    <Card>
+                      <CardHeader>
+                        <strong>3.2 ราคาซื้อ/ขายทรัพย์ตามตลาด</strong>
+                      </CardHeader>
+                      <CardBody>
+                        <Row>
+                          <Col xs="12" md="6">
+                            <ul className="data-detail">
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    ราคาซื้อ/ขายทรัพย์ :
+                                  </Col>
+                                  <Col xs="8">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    วันที่ซื้อ/ขาย :
+                                  </Col>
+                                  <Col xs="8">
+                                    01/04/2560
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    ประเภทหลักประกัน :
+                                  </Col>
+                                  <Col xs="8">
+                                    286003-ที่ดินเปล่า
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    LTV :
+                                  </Col>
+                                  <Col xs="8">
+                                    -
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    วันที่บันทึก LTV :
+                                  </Col>
+                                  <Col xs="8">
+                                    -
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </Col>
+                        </Row>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
               </TabPane>
             </TabContent>
           </Col>
