@@ -16,9 +16,23 @@ label.switch {
 }
 
 .resultProfileDetail ul {
-    list-style: none;
     margin-bottom: 0;
     padding: 0;
+}
+
+.data-detail,
+.data-detail-first,
+.tooltipDetail ul,
+.resultProfileDetail ul{
+    list-style: none;
+}
+
+.checkbox-other {
+    padding-top: 3px;
+}
+
+.data-detail-first {
+    border-right: 1px solid #787878;
 }
 
 .tooltipDetail {
@@ -27,7 +41,6 @@ label.switch {
 }
 
 .tooltipDetail ul {
-    list-style: none;
     margin-bottom: 0;
     padding: 0;
     font-size: 16px;
@@ -72,3 +85,5 @@ label.switch {
 .bs-tooltip-left .arrow::before{
     border-left-color: #15567f;
 }
+
+
