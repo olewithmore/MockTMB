@@ -344,90 +344,100 @@ class SearchDashboard extends Component {
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    ชื่อ-นามสกุล :
+                                    ประเภทเอกสารสิทธิ์ :
                                   </Col>
                                   <Col xs="8">
-                                    นายขอกู้ ธนาคาร
+                                    01-โฉนดที่ดิน
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    บัตรประชาชน :
+                                    เลขที่เอกสารสิทธิ์ :
                                   </Col>
                                   <Col xs="8">
-                                    3 2456 77890 98 7
+                                    0000001
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    ที่อยู่ตามทะเบียน :
+                                    ชื่อผู้ที่ถือกรรมสิทธิ์ :
                                   </Col>
                                   <Col xs="8">
-                                    59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
+                                    นายกรรมสิทธิ์ ที่ดิน
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    สถานะ :
+                                    ประเภทหลักประกัน :
                                   </Col>
                                   <Col xs="8">
-                                    โสด
+                                    000001 ที่ดิน
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    วัน/เดือน/ปี เกิด :
+                                    ได้มาโดย :
                                   </Col>
                                   <Col xs="8">
-                                    20 มิถุนายน 2520
+                                    การซื้อ-ขาย
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    อายุ :
+                                    ที่ตั้ง :
                                   </Col>
                                   <Col xs="8">
-                                    41 ปี
+                                    1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    อาชีพ :
+                                    เนื้อที่ :
                                   </Col>
                                   <Col xs="8">
-                                    พนักงานบริษัทเอกชน
+                                    1 ไร่ 1 งาน 36 ตารางวา
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    คู่สมรส :
+                                    ราคาประเมินล่าสุด :
                                   </Col>
                                   <Col xs="8">
-                                    นางขอกู้ร่วม ธนาคาร
+                                    10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
                                   <Col xs="4">
-                                    เบอร์ติดต่อ :
+                                    ราคาประเมินก่อนหน้า :
                                   </Col>
                                   <Col xs="8">
-                                    096-234-5632
+                                    8,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="4">
+                                    ละติจูด,ลองติจูด :
+                                  </Col>
+                                  <Col xs="8">
+                                    13°33'14.2"N, 99°49'13.1"E
                                   </Col>
                                 </Row>
                               </li>
@@ -512,91 +522,91 @@ class SearchDashboard extends Component {
                             <ul>
                               <li>
                                 <Row>
-                                  <Col xs="4">
-                                    ชื่อ-นามสกุล :
+                                  <Col xs="6">
+                                    ผู้กู้ :
                                   </Col>
-                                  <Col xs="8">
-                                    นายขอกู้ ธนาคาร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    บัตรประชาชน :
-                                  </Col>
-                                  <Col xs="8">
-                                    3 2456 77890 98 7
+                                  <Col xs="6">
+                                    นายกู้ ธนาคาร
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4">
+                                  <Col xs="6">
+                                    ผู้กู้ร่วม(ถ้ามี) :
+                                  </Col>
+                                  <Col xs="6">
+                                    นางกู้ร่วม ธนาคาร
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6">
                                     ที่อยู่ตามทะเบียน :
                                   </Col>
-                                  <Col xs="8">
+                                  <Col xs="6">
                                     59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4">
-                                    สถานะ :
+                                  <Col xs="6">
+                                    ประเภทสัญญา :
                                   </Col>
-                                  <Col xs="8">
-                                    โสด
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    วัน/เดือน/ปี เกิด :
-                                  </Col>
-                                  <Col xs="8">
-                                    20 มิถุนายน 2520
+                                  <Col xs="6">
+                                    PREMIER HOUSING LOAN
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4">
-                                    อายุ :
+                                  <Col xs="6">
+                                    วันที่ทำสัญญา :
                                   </Col>
-                                  <Col xs="8">
-                                    41 ปี
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    อาชีพ :
-                                  </Col>
-                                  <Col xs="8">
-                                    พนักงานบริษัทเอกชน
+                                  <Col xs="6">
+                                    01/01/2561
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4">
-                                    คู่สมรส :
+                                  <Col xs="6">
+                                    วงเงินกู้ :
                                   </Col>
-                                  <Col xs="8">
-                                    นางขอกู้ร่วม ธนาคาร
+                                  <Col xs="6">
+                                    5,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4">
-                                    เบอร์ติดต่อ :
+                                  <Col xs="6">
+                                    เลขที่บัญชี :
                                   </Col>
-                                  <Col xs="8">
-                                    096-234-5632
+                                  <Col xs="6">
+                                    0000000001
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6">
+                                    รหัสหลักประกัน :
+                                  </Col>
+                                  <Col xs="6">
+                                    PR0001,PR0002
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6">
+                                    ราคาประเมินทั้งหมดของหลักประกัน :
+                                  </Col>
+                                  <Col xs="6">
+                                    10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
@@ -640,7 +650,7 @@ class SearchDashboard extends Component {
             <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>Search</button>
           </div>
         </Row>
-        <hr/>
+        <br/>
         <Row>
           <Col xs="12" sm="12" lg="12">
             <Card>
