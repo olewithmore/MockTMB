@@ -184,6 +184,11 @@ class SearchDashboard extends Component {
   render() {
 
     let searchResult = null;
+    let map = null;
+
+    if(this.state.tooltipGuaranteeOpen){
+      map = <MyMapComponent isMarkerShown={true}></MyMapComponent>;
+    }
 
     if(this.state.searchEnable){
       searchResult = (
@@ -427,7 +432,7 @@ class SearchDashboard extends Component {
                                 </Row>
                               </li>
                             </ul>
-                            <MyMapComponent isMarkerShown={true}></MyMapComponent>
+                            {map}
                           </div>
                         </Tooltip>
                       </td>
