@@ -43,14 +43,60 @@ class ContentTable extends Component {
 
   render() {
 
-    let headers = this.props.headers.map((e, i) => {
-      return (
-        <th key={i}>
-          {e}
-        </th>
-      );
+    let clickTr = this.props.viewDetail || function() {};
+    let headers;
+    let itemHeader;
+    if(this.props.irregular){
+      let row1 = this.props.headers[0].map((e, i) => {
 
-    });
+        let rs = (e.ill)? 1 : 2;
+        let col = (e.ill)? e.n : 1;
+
+        return (
+          <th rowspan={rs} colspan={col} key={i}>
+            {e.text}
+          </th>
+        );
+      });
+
+      let row2 = this.props.headers[1].map((e, i) => {
+
+        let rs = (e.ill)? 1 : 2;
+        let col = (e.ill)? e.n : 1;
+
+        return (
+          <th rowspan={rs} colspan={col} key={i}>
+            {e}
+          </th>
+        );
+      });
+
+      headers = (
+        <React.Fragment>
+          <tr>
+            {row1}
+          </tr>
+
+          <tr>
+            {row2}
+          </tr>
+        </React.Fragment>
+      );
+    }else{
+      itemHeader = this.props.headers.map((e, i) => {
+        return (
+          <th key={i}>
+            {e}
+          </th>
+        );
+      });
+      headers = (
+        <tr>
+          {itemHeader}
+        </tr>
+      );
+    }
+
 
     let body = this.props.body.map((e, i) => {
       let dataTip = (e.dataTip);
@@ -62,7 +108,7 @@ class ContentTable extends Component {
         );
       });
       return (
-        <tr data-tip={dataTip} data-for={e.dataTipFor} key={i} onClick={() => { this.props.viewDetail(true) }}>
+        <tr data-tip={dataTip} data-for={e.dataTipFor} key={i} onClick={() => { clickTr(true) }}>
           {listTd}
         </tr>
       );
@@ -98,11 +144,9 @@ class ContentTable extends Component {
             </div>
           </Col>
         </Row>
-        <Table responsive size="sm">
-          <thead>
-            <tr>
+        <Table responsive size="sm" className="table-bordered table-hover">
+          <thead class="thead-light">
               {headers}
-            </tr>
           </thead>
           <tbody>
             {body}
