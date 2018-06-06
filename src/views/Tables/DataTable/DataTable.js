@@ -38,8 +38,8 @@ class DataTable extends Component {
           </CardHeader>
           <CardBody>
             <BootstrapTable data={this.table} version="4" striped hover pagination search options={this.options}>
-              <TableHeaderColumn dataField="name" dataSort>Name</TableHeaderColumn>
-              <TableHeaderColumn isKey dataField="email">Email</TableHeaderColumn>
+              <TableHeaderColumn dataField="name" dataSort={true}>Name</TableHeaderColumn>
+              <TableHeaderColumn dataField="email" isKey>Email</TableHeaderColumn>
               <TableHeaderColumn dataField="age" dataSort>Age</TableHeaderColumn>
               <TableHeaderColumn dataField="city" dataSort>City</TableHeaderColumn>
             </BootstrapTable>
