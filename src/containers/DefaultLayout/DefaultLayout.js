@@ -43,14 +43,13 @@ class DefaultLayout extends Component {
             <Container fluid>
               <Switch>
                 {routes.map((route, idx) => {
-                    if(route.path === '/search-dashboard') console.log("path :", route.path);
                     return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
                         <route.component {...props} />
                       )} />)
                       : (null);
                   },
                 )}
-                <Redirect from="/" to="/dashboard" />
+                {/*<Redirect from="/" to="/dashboard" />*/}
               </Switch>
             </Container>
           </main>

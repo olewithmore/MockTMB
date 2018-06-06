@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SearchDashboard.css';
 import dataSelect2 from './data';
+import ReactTooltip from 'react-tooltip';
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
@@ -128,10 +129,10 @@ class SearchDashboard extends Component {
         docType: "",
         statusType: "",
         actType: "",
-        tooltipGuaranteeOpen:  false,
+        tooltipGuaranteeOpen:  true,
         tooltipContactOpen: false,
-        viewData: true,
-        activeTab: "3"
+        viewData: false,
+        activeTab: "1"
     };
 
     this.formUpdateFactory = this.formUpdateFactory.bind(this);
@@ -353,7 +354,7 @@ class SearchDashboard extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr onClick={ () => { this.viewDetail(true) }}>
+                    <tr data-tip data-for='detailGuarantee' onClick={ () => { this.viewDetail(true) }}>
                       <td>1</td>
                       <td>PR0001</td>
                       <td>1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170</td>
@@ -361,113 +362,6 @@ class SearchDashboard extends Component {
                       <td>01/01/2561</td>
                       <td>
                         <span id="testTooltips">000001 ที่ดิน</span>
-                        <Tooltip placement="left" isOpen={this.state.tooltipGuaranteeOpen} target={'testTooltips'} toggle={this.setTooltips("tooltipGuaranteeOpen")}>
-                          <div className="tooltipDetail">
-                            <ul>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ประเภทเอกสารสิทธิ์ :
-                                  </Col>
-                                  <Col xs="8">
-                                    01-โฉนดที่ดิน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    เลขที่เอกสารสิทธิ์ :
-                                  </Col>
-                                  <Col xs="8">
-                                    0000001
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ชื่อผู้ที่ถือกรรมสิทธิ์ :
-                                  </Col>
-                                  <Col xs="8">
-                                    นายกรรมสิทธิ์ ที่ดิน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ประเภทหลักประกัน :
-                                  </Col>
-                                  <Col xs="8">
-                                    000001 ที่ดิน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ได้มาโดย :
-                                  </Col>
-                                  <Col xs="8">
-                                    การซื้อ-ขาย
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ที่ตั้ง :
-                                  </Col>
-                                  <Col xs="8">
-                                    1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    เนื้อที่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    1 ไร่ 1 งาน 36 ตารางวา
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ราคาประเมินล่าสุด :
-                                  </Col>
-                                  <Col xs="8">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ราคาประเมินก่อนหน้า :
-                                  </Col>
-                                  <Col xs="8">
-                                    8,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4">
-                                    ละติจูด,ลองติจูด :
-                                  </Col>
-                                  <Col xs="8">
-                                    13°33'14.2"N, 99°49'13.1"E
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                            {map}
-                          </div>
-                        </Tooltip>
                       </td>
                     </tr>
                     <tr>
@@ -531,7 +425,7 @@ class SearchDashboard extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr data-tip data-for='detailContact'>
                       <td>1</td>
                       <td>53-4310-00001</td>
                       <td>01/01/2561</td>
@@ -540,102 +434,6 @@ class SearchDashboard extends Component {
                       <td>สินเชื่อรายย่อย</td>
                       <td>
                         <span id="testTooltips2">AR-000001</span>
-                        <Tooltip placement="left" isOpen={this.state.tooltipContactOpen} target={'testTooltips2'} toggle={this.setTooltips("tooltipContactOpen")}>
-                          <div className="tooltipDetail">
-                            <ul>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    ผู้กู้ :
-                                  </Col>
-                                  <Col xs="6">
-                                    นายกู้ ธนาคาร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    ผู้กู้ร่วม(ถ้ามี) :
-                                  </Col>
-                                  <Col xs="6">
-                                    นางกู้ร่วม ธนาคาร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    ที่อยู่ตามทะเบียน :
-                                  </Col>
-                                  <Col xs="6">
-                                    59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    ประเภทสัญญา :
-                                  </Col>
-                                  <Col xs="6">
-                                    PREMIER HOUSING LOAN
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    วันที่ทำสัญญา :
-                                  </Col>
-                                  <Col xs="6">
-                                    01/01/2561
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    วงเงินกู้ :
-                                  </Col>
-                                  <Col xs="6">
-                                    5,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    เลขที่บัญชี :
-                                  </Col>
-                                  <Col xs="6">
-                                    0000000001
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    รหัสหลักประกัน :
-                                  </Col>
-                                  <Col xs="6">
-                                    PR0001,PR0002
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6">
-                                    ราคาประเมินทั้งหมดของหลักประกัน :
-                                  </Col>
-                                  <Col xs="6">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </div>
-                        </Tooltip>
                       </td>
                       <td>000010153</td>
                       <td>1111/2561</td>
@@ -659,6 +457,209 @@ class SearchDashboard extends Component {
               </Card>
             </Col>
           </Row>
+          <ReactTooltip id='detailContact' type='info' effect='solid'>
+            <div className="tooltipDetail">
+              <ul>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      ผู้กู้ :
+                    </Col>
+                    <Col xs="6">
+                      นายกู้ ธนาคาร
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      ผู้กู้ร่วม(ถ้ามี) :
+                    </Col>
+                    <Col xs="6">
+                      นางกู้ร่วม ธนาคาร
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      ที่อยู่ตามทะเบียน :
+                    </Col>
+                    <Col xs="6">
+                      59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      ประเภทสัญญา :
+                    </Col>
+                    <Col xs="6">
+                      PREMIER HOUSING LOAN
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      วันที่ทำสัญญา :
+                    </Col>
+                    <Col xs="6">
+                      01/01/2561
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      วงเงินกู้ :
+                    </Col>
+                    <Col xs="6">
+                      5,000,000.00 บาท
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      เลขที่บัญชี :
+                    </Col>
+                    <Col xs="6">
+                      0000000001
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      รหัสหลักประกัน :
+                    </Col>
+                    <Col xs="6">
+                      PR0001,PR0002
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="6">
+                      ราคาประเมินทั้งหมดของหลักประกัน :
+                    </Col>
+                    <Col xs="6">
+                      10,000,000.00 บาท
+                    </Col>
+                  </Row>
+                </li>
+              </ul>
+            </div>
+          </ReactTooltip>
+          <ReactTooltip id='detailGuarantee' type='info' effect='solid'>
+            <div className="tooltipDetail">
+              <ul>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ประเภทเอกสารสิทธิ์ :
+                    </Col>
+                    <Col xs="8">
+                      01-โฉนดที่ดิน
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      เลขที่เอกสารสิทธิ์ :
+                    </Col>
+                    <Col xs="8">
+                      0000001
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ชื่อผู้ที่ถือกรรมสิทธิ์ :
+                    </Col>
+                    <Col xs="8">
+                      นายกรรมสิทธิ์ ที่ดิน
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ประเภทหลักประกัน :
+                    </Col>
+                    <Col xs="8">
+                      000001 ที่ดิน
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ได้มาโดย :
+                    </Col>
+                    <Col xs="8">
+                      การซื้อ-ขาย
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ที่ตั้ง :
+                    </Col>
+                    <Col xs="8">
+                      1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      เนื้อที่ :
+                    </Col>
+                    <Col xs="8">
+                      1 ไร่ 1 งาน 36 ตารางวา
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ราคาประเมินล่าสุด :
+                    </Col>
+                    <Col xs="8">
+                      10,000,000.00 บาท
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ราคาประเมินก่อนหน้า :
+                    </Col>
+                    <Col xs="8">
+                      8,000,000.00 บาท
+                    </Col>
+                  </Row>
+                </li>
+                <li>
+                  <Row>
+                    <Col xs="4">
+                      ละติจูด,ลองติจูด :
+                    </Col>
+                    <Col xs="8">
+                      13°33'14.2"N, 99°49'13.1"E
+                    </Col>
+                  </Row>
+                </li>
+              </ul>
+              {map}
+            </div>
+          </ReactTooltip>
         </React.Fragment>
       );
     }
@@ -1118,10 +1119,10 @@ class SearchDashboard extends Component {
                               <li>
                                 <Row>
                                   <Col xs="4" className="labelSearch">
-                                    ถนนสะอาด :
+                                    ถนน :
                                   </Col>
                                   <Col xs="8">
-                                    1
+                                    สะอาด
                                   </Col>
                                 </Row>
                               </li>
@@ -1831,18 +1832,6 @@ class SearchDashboard extends Component {
                                 <Row>
                                   <Col xs="3" className="labelSearch">
                                   </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ถมแล้ว</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
                                   <Col xs="2" className="checkbox-other">
                                     <FormGroup check className="checkbox">
                                       <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
@@ -1850,7 +1839,7 @@ class SearchDashboard extends Component {
                                     </FormGroup>
                                   </Col>
                                   <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="เนินเขา" />
+                                    <Input type="text" className="form-control-sm" value="ตลาดสด" />
                                   </Col>
                                 </Row>
                               </li>
@@ -1864,7 +1853,7 @@ class SearchDashboard extends Component {
                                   </Col>
                                   <Col xs="5">
                                     <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
+                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
                                       <Label check className="form-check-label" htmlFor="checkbox1">พานิชยกรรม</Label>
                                     </FormGroup>
                                   </Col>
@@ -1983,6 +1972,78 @@ class SearchDashboard extends Component {
                                   </Col>
                                   <Col xs="7" >
                                     <strong>ราคาซื้อขายที่ดิน ไร่/ตรว.</strong> 10,000
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </Col>
+                        </Row>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs="12">
+                    <Card>
+                      <CardHeader>
+                        <strong>2.8 ศักยภาพ</strong>
+                      </CardHeader>
+                      <CardBody>
+                        <Row>
+                          <Col xs="12" md="6">
+                            <ul className="data-detail-first">
+                              <li>
+                                <Row>
+                                  <Col xs="3" className="labelSearch">
+                                  </Col>
+                                  <Col xs="5">
+                                    <FormGroup check className="checkbox">
+                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
+                                      <Label check className="form-check-label" htmlFor="checkbox1">สูง</Label>
+                                    </FormGroup>
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="3" className="labelSearch">
+                                  </Col>
+                                  <Col xs="5" className="">
+                                    <FormGroup check className="checkbox">
+                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
+                                      <Label check className="form-check-label" htmlFor="checkbox1">ต่ำ</Label>
+                                    </FormGroup>
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="3" className="labelSearch">
+                                  </Col>
+                                  <Col xs="2" className="checkbox-other">
+                                    <FormGroup check className="checkbox">
+                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
+                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                    </FormGroup>
+                                  </Col>
+                                  <Col xs="4" className="">
+                                    <Input type="text" className="form-control-sm" value="ดีมาก" />
+                                  </Col>
+                                </Row>
+                              </li>
+                            </ul>
+                          </Col>
+                          <Col xs="12" md="6">
+                            <ul className="data-detail">
+                              <li>
+                                <Row>
+                                  <Col xs="3" className="labelSearch">
+                                  </Col>
+                                  <Col xs="5">
+                                    <FormGroup check className="checkbox">
+                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
+                                      <Label check className="form-check-label" htmlFor="checkbox1">กลาง</Label>
+                                    </FormGroup>
                                   </Col>
                                 </Row>
                               </li>
@@ -2277,6 +2338,16 @@ class SearchDashboard extends Component {
                               </li>
                               <li>
                                 <Row>
+                                  <Col xs="5" className="labelSearch">
+                                    ราคาประเมินครั้งก่อน Original :
+                                  </Col>
+                                  <Col xs="7">
+                                    9,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
                                   <Col xs="4" className="labelSearch">
                                     &nbsp;
                                   </Col>
@@ -2295,7 +2366,16 @@ class SearchDashboard extends Component {
                                   </Col>
                                 </Row>
                               </li>
-
+                              <li>
+                                <Row>
+                                  <Col xs="4" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="8">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
                               <li>
                                 <Row>
                                   <Col xs="5" className="labelSearch">
@@ -2360,16 +2440,6 @@ class SearchDashboard extends Component {
                                   </Col>
                                   <Col xs="8">
                                     01/04/2560
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ประเภทหลักประกัน :
-                                  </Col>
-                                  <Col xs="8">
-                                    286003-ที่ดินเปล่า
                                   </Col>
                                 </Row>
                               </li>

@@ -7,12 +7,12 @@ export default {
     },
     {
       name: 'ประเมินราคา',
-      url: '/theme/colors',
+      url: '/appraise',
       icon: 'icon-note',
     },
     {
       name: 'พิธีการสินเชื่อ',
-      url: '/theme/typography',
+      url: '/credit',
       icon: 'icon-credit-card',
     },
     {

@@ -71,14 +71,16 @@ label.switch {
     line-height: 26px;
 }
 
-.test {
-    color: #00aced;
+.test, .card-header {
+    background-color: #0080ae;
+    color: white;
 }
 
-.tooltip-inner {
-    max-width: 600px;
+.tooltip-inner,
+.__react_component_tooltip {
+    max-width: 620px;
     /*!* If max-width does not work, try using width instead *!*/
-    width: 600px;
+    width: 620px;
     background-color: #15567f;
 }
 

@@ -40,7 +40,7 @@ class DefaultHeader extends Component {
         {/*</Nav>*/}
         <Nav className="ml-auto" navbar>
           <DefaultHeaderDropdown accnt/>
-          <span>Firstname Lastname &nbsp;&nbsp;&nbsp;</span>
+          <span>10001- นิติกรรมสัญญา ธนาคารทหารไทย &nbsp;&nbsp;&nbsp;</span>
           {/*<DefaultHeaderDropdown notif/>*/}
           {/*<DefaultHeaderDropdown tasks/>*/}
           {/*<DefaultHeaderDropdown mssgs/>*/}
