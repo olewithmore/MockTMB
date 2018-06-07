@@ -43,7 +43,8 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-  Nav, NavItem, NavLink, TabPane, TabContent
+  Nav, NavItem, NavLink, TabPane, TabContent,
+  Modal, ModalBody, ModalFooter, ModalHeader
 } from 'reactstrap';
 
 import { AppSwitch } from '@coreui/react';
@@ -70,17 +71,28 @@ const MyMapComponent = compose(
   </GoogleMap>
 );
 
-const doughnut = {
-  labels: [
-    'นิติกรรมสัญญา',
-    'หลักประกัน'
-  ],
+
+const labelGuarantee = data.mainDataTableGuarantee.body.map((e) => {
+  return e.td[1];
+});
+
+const dataGuarantee = data.mainDataTableGuarantee.body.map((e) => {
+  return +(e.td[3].replace(/,/g, ""));
+});
+
+console.log("dataGuarantee :", dataGuarantee);
+
+const doughnutGuarantee = {
+  labels: labelGuarantee,
   datasets: [
     {
-      data: [15000000, 10000000],
+      data: dataGuarantee,
       backgroundColor: [
         '#ED5243',
-        '#0059ED'
+        '#0059ED',
+        '#4BC0C0',
+        '#FFCE56',
+        '#36A2EB'
       ],
       hoverBackgroundColor: [
         '#ED5243',
@@ -89,7 +101,11 @@ const doughnut = {
     }],
 };
 
-const options = {
+const optionsGuarantee = {
+  title: {
+    display: true,
+    text: 'หลักประกัน'
+  },
   tooltips: {
     mode: 'nearest',
     titleFontSize: 16,
@@ -97,7 +113,7 @@ const options = {
     displayColors: false,
     callbacks: {
       beforeBody: function(tooltipItem, data) {
-        return data['labels'][tooltipItem[0]['index']] + "จำนวน 2 รายการ";
+        return data['labels'][tooltipItem[0]['index']] ;
       },
       label: function(tooltipItem, data) {
         let text;
@@ -110,7 +126,72 @@ const options = {
           text = `ราคาที่ประเมินได้ล่าสุดทั้งหมด ${total} บาท`;
         }
 
-        return text;
+        return `ราคาที่ประเมินได้ล่าสุด ${total} บาท`;
+      },
+      enabled: false,
+
+      custom: function(tooltipModel) {
+        var tooltipEl = document.getElementById('chartjs-tooltip');
+        tooltipEl.innerHTML = "<b>ole</b>";
+      }
+    }
+  }
+};
+
+
+const labelContact = data.mainDataTableContact.body.map((e) => {
+  return e.td[1];
+});
+
+const dataContact = data.mainDataTableContact.body.map((e) => {
+  return +(e.td[4].replace(/,/g, ""));
+});
+
+const doughnutContact = {
+  labels: labelContact,
+  datasets: [
+    {
+      data: dataContact,
+      backgroundColor: [
+        '#ED5243',
+        '#0059ED',
+        '#4BC0C0',
+        '#FFCE56',
+        '#36A2EB'
+      ],
+      hoverBackgroundColor: [
+        '#ED5243',
+        '#0059ED'
+      ],
+    }],
+};
+
+const optionsContact = {
+  title: {
+    display: true,
+    text: 'นิติกรรมสัญญา'
+  },
+  tooltips: {
+    mode: 'nearest',
+    titleFontSize: 16,
+    bodyFontSize: 14,
+    displayColors: false,
+    callbacks: {
+      beforeBody: function(tooltipItem, data) {
+        return data['labels'][tooltipItem[0]['index']];
+      },
+      label: function(tooltipItem, data) {
+        let text;
+        let total = data['datasets'][0]['data'][tooltipItem['index']] + ".00";
+        total = total.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+        if(tooltipItem.index === 0){
+          text = `วงเงินกู้ทั้งหมด  ${total} บาท`;
+        }else if(tooltipItem.index === 1){
+          text = `ราคาที่ประเมินได้ล่าสุดทั้งหมด ${total} บาท`;
+        }
+
+        return `ราคาที่ประเมินได้ล่าสุด ${total} บาท`;
       },
       enabled: false,
 
@@ -131,8 +212,8 @@ class SearchDashboard extends Component {
         showCustomer: true,
         showGuarantee: true,
         showContact: true,
-        showSerach: true,
-        searchEnable: false,
+        showSerach: false,
+        searchEnable: true,
         guaranteeType: "",
         docType: "",
         statusType: "",
@@ -141,7 +222,9 @@ class SearchDashboard extends Component {
         tooltipContactOpen: false,
         viewDetailGuarantee: false,
         viewDetailContact: false,
-        activeTab: "1"
+        activeTab: "1",
+        toggleModalGuarantee: false,
+        toggleModalContact: false
     };
 
     this.formUpdateFactory = this.formUpdateFactory.bind(this);
@@ -152,6 +235,8 @@ class SearchDashboard extends Component {
     this.viewDetailContact = this.viewDetailContact.bind(this);
     this.backToDetail = this.backToDetail.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleModalGuarantee = this.toggleModalGuarantee.bind(this);
+    this.toggleModalContact = this.toggleModalContact.bind(this);
   }
 
   formToggleShowSearch(key) {
@@ -229,6 +314,22 @@ class SearchDashboard extends Component {
     }
   }
 
+  toggleModalGuarantee(){
+    let tempObject = {...this.state};
+
+    this.setState({
+      toggleModalGuarantee: !tempObject.toggleModalGuarantee
+    });
+  }
+
+  toggleModalContact() {
+    let tempObject = {...this.state};
+
+    this.setState({
+      toggleModalContact: !tempObject.toggleModalContact
+    });
+  }
+
   render() {
 
     let searchResult = null;
@@ -260,12 +361,17 @@ class SearchDashboard extends Component {
             </Col>
           </Row>
           <Row className="justify-content-md-center">
-            <Col xs="12">
+            <Col xs="12" md="6">
               <Card>
                 <CardBody>
-                  <div className="chartContainer">
-                    <Doughnut data={doughnut} height={80} options={options} />
-                  </div>
+                  <Doughnut data={doughnutGuarantee} height={200} options={optionsGuarantee} />
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="12" md="6">
+              <Card>
+                <CardBody>
+                  <Doughnut data={doughnutContact} height={200} options={optionsContact} />
                 </CardBody>
               </Card>
             </Col>
@@ -277,7 +383,7 @@ class SearchDashboard extends Component {
                   <i className="fa fa-database"></i> <strong>ข้อมูลหลักประกัน</strong>
                 </CardHeader>
                 <CardBody>
-                  <ContentTable headers={data.mainDataTableGuarantee.header} body={data.mainDataTableGuarantee.body} viewDetail={ this.viewDetailGuarantee }></ContentTable>
+                  <ContentTable headers={data.mainDataTableGuarantee.header} body={data.mainDataTableGuarantee.body} viewDetail={ this.viewDetailGuarantee } openModalDetail={ this.toggleModalGuarantee } ></ContentTable>
                 </CardBody>
               </Card>
             </Col>
@@ -289,7 +395,7 @@ class SearchDashboard extends Component {
                   <i className="fa fa-database"></i> <strong>ข้อมูลนิติกรรมสัญญา</strong>
                 </CardHeader>
                 <CardBody>
-                  <ContentTable headers={data.mainDataTableContact.header} body={data.mainDataTableContact.body} viewDetail={ this.viewDetailContact }></ContentTable>
+                  <ContentTable headers={data.mainDataTableContact.header} body={data.mainDataTableContact.body} viewDetail={ this.viewDetailContact } openModalDetail={ this.toggleModalContact } ></ContentTable>
                 </CardBody>
               </Card>
             </Col>
@@ -497,6 +603,223 @@ class SearchDashboard extends Component {
               {map}
             </div>
           </ReactTooltip>
+          <Modal isOpen={this.state.toggleModalGuarantee} toggle={this.toggleModalGuarantee}
+                 className={'modal-info modal-lg ' + this.props.className}>
+            <ModalHeader toggle={this.toggleModalGuarantee}>รายละเอียดหลักประกัน</ModalHeader>
+            <ModalBody>
+              <div className="tooltipDetail">
+                <ul>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ประเภทเอกสารสิทธิ์ :
+                      </Col>
+                      <Col xs="7">
+                        01-โฉนดที่ดิน
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        เลขที่เอกสารสิทธิ์ :
+                      </Col>
+                      <Col xs="7">
+                        0000001
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ชื่อผู้ที่ถือกรรมสิทธิ์ :
+                      </Col>
+                      <Col xs="7">
+                        นายกรรมสิทธิ์ ที่ดิน
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ประเภทหลักประกัน :
+                      </Col>
+                      <Col xs="7">
+                        000001 ที่ดิน
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ได้มาโดย :
+                      </Col>
+                      <Col xs="7">
+                        การซื้อ-ขาย
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ที่ตั้ง :
+                      </Col>
+                      <Col xs="7">
+                        1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        เนื้อที่ :
+                      </Col>
+                      <Col xs="7">
+                        1 ไร่ 1 งาน 36 ตารางวา
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ราคาประเมินล่าสุด :
+                      </Col>
+                      <Col xs="7">
+                        10,000,000.00 บาท
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ราคาประเมินก่อนหน้า :
+                      </Col>
+                      <Col xs="7">
+                        8,000,000.00 บาท
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="5">
+                        ละติจูด,ลองติจูด :
+                      </Col>
+                      <Col xs="7">
+                        13°33'14.2"N, 99°49'13.1"E
+                      </Col>
+                    </Row>
+                  </li>
+                </ul>
+                {map}
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.toggleModalGuarantee}>Close</Button>{' '}
+            </ModalFooter>
+          </Modal>
+          <Modal isOpen={this.state.toggleModalContact} toggle={this.toggleModalContact}
+                 className={'modal-info modal-lg ' + this.props.className}>
+            <ModalHeader toggle={this.toggleModalContact}>รายละเอียดนิจิกรรมสัญญา</ModalHeader>
+            <ModalBody>
+              <div className="tooltipDetail">
+                <ul>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        ผู้กู้ :
+                      </Col>
+                      <Col xs="6">
+                        นายกู้ ธนาคาร
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        ผู้กู้ร่วม(ถ้ามี) :
+                      </Col>
+                      <Col xs="6">
+                        นางกู้ร่วม ธนาคาร
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        ที่อยู่ตามทะเบียน :
+                      </Col>
+                      <Col xs="6">
+                        59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        ประเภทสัญญา :
+                      </Col>
+                      <Col xs="6">
+                        PREMIER HOUSING LOAN
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        วันที่ทำสัญญา :
+                      </Col>
+                      <Col xs="6">
+                        01/01/2561
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        วงเงินกู้ :
+                      </Col>
+                      <Col xs="6">
+                        5,000,000.00 บาท
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        เลขที่บัญชี :
+                      </Col>
+                      <Col xs="6">
+                        0000000001
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        รหัสหลักประกัน :
+                      </Col>
+                      <Col xs="6">
+                        PR0001,PR0002
+                      </Col>
+                    </Row>
+                  </li>
+                  <li>
+                    <Row>
+                      <Col xs="6">
+                        ราคาประเมินทั้งหมดของหลักประกัน :
+                      </Col>
+                      <Col xs="6">
+                        10,000,000.00 บาท
+                      </Col>
+                    </Row>
+                  </li>
+                </ul>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.toggleModalContact}>Close</Button>
+            </ModalFooter>
+          </Modal>
         </React.Fragment>
       );
     }
@@ -2359,17 +2682,32 @@ class SearchDashboard extends Component {
         {/*<button type="button" className="btn btn-primary btn-block">Search</button>*/}
       </div>
       <div className="col-md-2">
-        <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.backToDetail() }}>Back</button>
+        <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.backToDetail() }}>กลับ</button>
       </div>
     </Row>);
+    let render = null;
 
     if(this.state.viewDetailGuarantee){
       navButton = navButtonViewDetail;
       content = (dataDetailGuarantee);
+      render = (
+        <React.Fragment>
+          {content}
+          {navButton}
+          <br/>
+        </React.Fragment>
+      );
     }
     else if(this.state.viewDetailContact){
       navButton = navButtonViewDetail;
       content = (dataDetailContact);
+      render = (
+        <React.Fragment>
+          {content}
+          {navButton}
+          <br/>
+        </React.Fragment>
+      );
     }
     else{
       navButton = (<Row>
@@ -2377,10 +2715,10 @@ class SearchDashboard extends Component {
           {/*<button type="button" className="btn btn-primary btn-block">Search</button>*/}
         </div>
         <div className="col-md-2">
-          <button type="button" className="btn btn-danger btn-block" onClick={()=> {}}>Clear</button>
+          <button type="button" className="btn btn-danger btn-block" onClick={()=> {}}>ล้าง</button>
         </div>
         <div className="col-md-2">
-          <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>Search</button>
+          <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>ค้นหา</button>
         </div>
       </Row>);
       content = (
@@ -2411,7 +2749,7 @@ class SearchDashboard extends Component {
                           บัตรประชาชนผู้กู้
                         </Col>
                         <Col md="3">
-                          <Input type="text" className="form-control-sm" />
+                          <Input type="text" className="form-control-sm" placeholder="X XXXX XXXXX XX X" />
                         </Col>
                       </FormGroup>
                       <FormGroup row>
@@ -2531,13 +2869,18 @@ class SearchDashboard extends Component {
           {searchResult}
         </React.Fragment>
       );
+      render = (
+        <React.Fragment>
+          {navButton}
+          <br/>
+          {content}
+        </React.Fragment>
+      );
     }
 
     return (
       <div className="animated fadeIn">
-        {navButton}
-        <br/>
-        {content}
+        {render}
       </div>
     );
   }

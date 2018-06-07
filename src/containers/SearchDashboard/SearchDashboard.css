@@ -27,6 +27,18 @@ label.switch {
     list-style: none;
 }
 
+.tooltipDetail {
+    text-align: left;
+    padding: 1rem 2rem;
+}
+
+.tooltipDetail ul {
+    margin-bottom: 15px;
+    padding: 0;
+    font-size: 16px;
+    color: black;
+}
+
 .checkbox-other {
     padding-top: 3px;
 }
@@ -35,17 +47,7 @@ label.switch {
     border-right: 1px solid #787878;
 }
 
-.tooltipDetail {
-    text-align: left;
-    padding: 1rem 2rem;
-}
 
-.tooltipDetail ul {
-    margin-bottom: 0;
-    padding: 0;
-    font-size: 16px;
-    color: white;
-}
 
 .chartContainer {
     text-align: center;

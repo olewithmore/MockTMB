@@ -60,7 +60,7 @@ class Login extends Component {
                     </InputGroup>
                     <Row>
                       <Col xs="12" md="12" lg="12">
-                        <Button color="primary" className="btn-block" onClick={() => {  this.onLogin() }}>Login</Button>
+                        <Button color="primary" className="btn-block" onClick={() => {  this.onLogin() }}>เข้าสู่ระบบ</Button>
                       </Col>
                     </Row>
                   </CardBody>

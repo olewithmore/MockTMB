@@ -2,6 +2,7 @@
  * Created by olewithmore on 6/6/2018.
  */
 import React, { Component } from 'react';
+import './Table.css';
 
 import {
   Badge,
@@ -46,6 +47,7 @@ class ContentTable extends Component {
     let clickTr = this.props.viewDetail || function() {};
     let headers;
     let itemHeader;
+
     if(this.props.irregular){
       let row1 = this.props.headers[0].map((e, i) => {
 
@@ -99,16 +101,33 @@ class ContentTable extends Component {
 
 
     let body = this.props.body.map((e, i) => {
-      let dataTip = (e.dataTip);
+      // let dataTip = (e.dataTip);
+      let eveClick = function(){};
+      let td;
+
       let listTd = e.td.map((content, l) => {
-        return (
-          <td key={l}>
-            {content}
-          </td>
-        );
+        if(content === 'searchIcon'){
+          td = (<React.Fragment key={l}>
+            <td key={l} onClick={() => { this.props.openModalDetail() }}>
+              <span><i className="fa fa-search"></i></span>
+            </td>
+          </React.Fragment>);
+        }else {
+          eveClick = this.props.viewDetail;
+          td = (<React.Fragment key={l}>
+            <td key={l} onClick={() => {this.props.viewDetail(true);}}>
+              <span>{content}</span>
+            </td>
+          </React.Fragment>);
+        }
+
+        return td;
       });
+
+      // attr for data tip
+      // data-tip={dataTip} data-for={e.dataTipFor}
       return (
-        <tr data-tip={dataTip} data-for={e.dataTipFor} key={i} onClick={() => { clickTr(true) }}>
+        <tr key={i} >
           {listTd}
         </tr>
       );
@@ -118,8 +137,8 @@ class ContentTable extends Component {
     return (
       <React.Fragment>
         <Row>
-          <Col xs="1" style={ { textAlign: 'right', paddingTop: '4px', paddingRight: '0px' } }>
-            Show
+          <Col xs="1" style={ { textAlign: 'left', paddingTop: '5px', paddingRight: '0px', fontSize: '11px' } }>
+            แสดงข้อมูลจำนวน
           </Col>
           <Col xs="1" style={ {paddingLeft: '5px', paddingRight: '5px'}}>
               <select className="form-control form-control-sm">
@@ -128,27 +147,24 @@ class ContentTable extends Component {
                 <option value="100">100</option>
               </select>
           </Col>
-          <Col xs="1" style={ { textAlign: 'left', paddingTop: '4px', paddingLeft: '0px' } }>
-            entries
-          </Col>
-          <Col xs="5">
+          <Col xs="6">
             &nbsp;
           </Col>
           <Col xs="4">
             <div className="form-group form-group-sm react-bs-table-search-form input-group input-group-sm">
               <input className="form-control " type="text" placeholder="Search" value="" style={ {zIndex: 0} }/>
               <span className="input-group-btn"><button className="btn btn-default btn-secondary  react-bs-table-search-clear-btn" type="button">
-                <span>Clear</span>
+                <span>ล้าง</span>
               </button>
               </span>
             </div>
           </Col>
         </Row>
         <Table responsive size="sm" className="table-bordered table-hover">
-          <thead class="thead-light">
+          <thead className="thead-light white-space text-center">
               {headers}
           </thead>
-          <tbody>
+          <tbody className="white-space">
             {body}
           </tbody>
         </Table>
