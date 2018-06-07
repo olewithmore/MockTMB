@@ -41,8 +41,8 @@ class DataDetail extends Component {
     super(props);
 
     this.state = {
-      defaultColFirst: "4",
-      defaultColSecond: "8",
+      defaultColFirst: "5",
+      defaultColSecond: "7",
     };
   }
 
@@ -58,11 +58,22 @@ class DataDetail extends Component {
       let colS = e.colS || this.state.defaultColSecond;
       let contentF = e.f;
       let contentS = e.s;
+      if(contentF) {
+        contentF += " :";
+      }else {
+        contentF = <span>&nbsp;</span>
+      }
+
+      if(contentS) {
+        contentS += " :";
+      }else {
+        contentS = <span>&nbsp;</span>
+      }
 
       return (<li key={i}>
         <Row>
           <Col xs={colF} className={colClassNameF}>
-            {contentF} :
+            {contentF}
           </Col>
           <Col xs={colS} className={colClassNameS}>
             {contentS}

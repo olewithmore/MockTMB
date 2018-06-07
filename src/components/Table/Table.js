@@ -84,7 +84,8 @@ class ContentTable extends Component {
           </tr>
         </React.Fragment>
       );
-    }else{
+    }
+    else{
       itemHeader = this.props.headers.map((e, i) => {
         return (
           <th key={i}>
@@ -105,17 +106,17 @@ class ContentTable extends Component {
       let eveClick = function(){};
       let td;
 
-      let listTd = e.td.map((content, l) => {
+      let listTd = e.td.map(({content, classNameTd}, l) => {
         if(content === 'searchIcon'){
           td = (<React.Fragment key={l}>
-            <td key={l} onClick={() => { this.props.openModalDetail() }}>
+            <td className={classNameTd} key={l} onClick={() => { this.props.openModalDetail() }}>
               <span><i className="fa fa-search"></i></span>
             </td>
           </React.Fragment>);
         }else {
           eveClick = this.props.viewDetail;
           td = (<React.Fragment key={l}>
-            <td key={l} onClick={() => {this.props.viewDetail(true);}}>
+            <td className={classNameTd} key={l} onClick={() => {this.props.viewDetail(true);}}>
               <span>{content}</span>
             </td>
           </React.Fragment>);

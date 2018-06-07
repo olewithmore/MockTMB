@@ -1,6 +1,11 @@
 /**
  * Created by olewithmore on 6/4/2018.
  */
+
+
+const classNameTextRight = "text-right";
+const classNameTextCenter = "text-center";
+
 let typeGuarantee = [
   { value: 'all', label: 'ทั้งหมด', className: 'State-ACT' },
   { value: '01', label: '000001 ที่ดิน', className: 'State-NSW' },
@@ -54,15 +59,43 @@ detailDataGuarantee.dataLand.landLeft = [
   { f: "ประเภทหลักประกัน", s: "286003-ที่ดินเปล่า"},
   { f: "ได้มาโดย", s: "การซื้อ-ขาย"},
   { f: "เนื้อที่", s: "1 ไร่ 1 งาน 37.9 วา"},
-];
-
-detailDataGuarantee.dataLand.landRight = [
   { f: "เลขที่เอกสารสิทธิ์", s: "000001"},
   { f: "วันที่ประเมิน", s: "01/01/2561"},
   { f: "วันที่จดทะเบียนกรมที่ดิน", s: "01/01/2525"}
 ];
 
-detailDataGuarantee.detailLand = {};
+detailDataGuarantee.dataLand.detailOfDeed = [
+  { f: "เลขที่โฉนด", s: "236542"},
+  { f: "เลขที่ดิน", s: "1234"},
+  { f: "เล่ม", s: "1"},
+  { f: "ระวาง", s: "5136 IV 6645-10"},
+  { f: "หน้าสำรวจ", s: "11000"},
+  { f: "หน้า", s: "51"},
+  { f: "", s: ""},
+  { f: "", s: ""}
+];
+
+detailDataGuarantee.dataLand.adminRegion = [
+  { f: "รหัสตามเขตปกครอง", s: "120105"},
+  { f: "ที่ตั้งเขต", s: "ต.ในเมือง อ.เมือง จ.นนทบุรี 11000"},
+  { f: "", s: ""},
+  { f: "", s: ""},
+  { f: "", s: ""},
+  { f: "", s: ""},
+  { f: "", s: ""},
+  { f: "", s: ""}
+];
+
+detailDataGuarantee.dataLand.position = [
+  { f: "เลขที่", s: "1"},
+  { f: "หมู่บ้าน", s: "-"},
+  { f: "ถนน", s: "สะอาด"},
+  { f: "อำเภอ/เขต", s: "ในเมือง"},
+  { f: "หมู่", s: "-"},
+  { f: "ตรอก/ซอย", s: "1"},
+  { f: "ตำบล/แขวง", s: "ในเมือง"},
+  { f: "จังหวัด", s: "นนทบุรี"}
+];
 
 detailDataGuarantee.detailAssetmentLand = {};
 
@@ -102,10 +135,20 @@ detailDataContact[0][1].header = [
 detailDataContact[0][1].body = [
   {
     td: [
-      '1',
-      'PREMIER HOUSING LOAN',
-      '3000000',
-      '0134323456'
+      {
+        content: '1'
+      },
+      {
+        content: 'PREMIER HOUSING LOAN'
+      },
+      {
+        content: '3,000,000.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0134323456',
+        classNameTd: classNameTextCenter
+      }
     ]
   }
 ];
@@ -123,13 +166,28 @@ detailDataContact[0][2].header = [
 detailDataContact[0][2].body = [
   {
     td: [
-      '1',
-      '345656',
-      'ที่ดินเปล่า',
-      'N',
-      '5000000',
-      '00000001',
-      'โฉนดที่ดิน ต.ในเมือง อ.เมือง จ.เชียงใหม่ 12345',
+      {
+        content: '1',
+      },
+      {
+        content: '345656',
+      },
+      {
+        content: 'ที่ดินเปล่า',
+      },
+      {
+        content: 'N',
+      },
+      {
+        content: '5,000,000.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '00000001',
+      },
+      {
+        content: 'โฉนดที่ดิน ต.ในเมือง อ.เมือง จ.เชียงใหม่ 12345',
+      }
     ]
   }
 ];
@@ -149,22 +207,50 @@ detailDataContact[1][0].header = [
 detailDataContact[1][0].body = [
   {
     td: [
-      '1',
-      'นายขอกู้ ธนาคาร',
-      '3 2456 77890 98 7',
-      'ไม่ใช่',
-      '59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100',
-      'นางขอกู้ร่วม ธนาคาร'
+      {
+        content: '1',
+      },
+      {
+        content: 'นายขอกู้ ธนาคาร'
+      },
+      {
+        content: '3 2456 77890 98 7',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'ไม่ใช่',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100'
+      },
+      {
+        content: 'นางขอกู้ร่วม ธนาคาร'
+      }
     ]
   },
   {
     td: [
-      '2',
-      'นางขอกู้ร่วม ธนาคาร',
-      '3 2456 77890 98 8',
-      'ไม่ใช่',
-      '59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100',
-      'นายขอกู้ ธนาคาร'
+      {
+        content: '2',
+      },
+      {
+        content: 'นางขอกู้ร่วม ธนาคาร'
+      },
+      {
+        content: '3 2456 77890 98 8',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'ไม่ใช่',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '59/306 ถ.สวย ต.ในเมือง อ.เมือง จ.นนทบุรี 1100'
+      },
+      {
+        content: 'นายขอกู้ ธนาคาร'
+      }
     ]
   }
 ];
@@ -182,10 +268,20 @@ detailDataContact[2][0].header = [
 detailDataContact[2][0].body = [
   {
     td: [
-      '1',
-      'จำนองเป็นประกัน',
-      '3,100,000',
-      '3,100,000'
+      {
+        content: '1'
+      },
+      {
+        content: 'จำนองเป็นประกัน'
+      },
+      {
+        content: '3,100,000.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '3,100,000.00',
+        classNameTd: classNameTextRight
+      }
     ]
   }
 ];
@@ -235,13 +331,29 @@ detailDataContact[2][2].header[1] = [
 detailDataContact[2][2].body = [
   {
     td: [
-      '1',
-      '236852',
-      '236852',
-      'โฉนดที่ดิน',
-      'โฉนดที่ดิน  236852 ต.ในมือง อ.เมือง จ.นนทบุรี 11000',
-      'PR001-000000001',
-      'PR001-000000001',
+      {
+        content: '1'
+      },
+      {
+        content: '236852'
+      },
+      {
+        content: '236852'
+      },
+      {
+        content: 'โฉนดที่ดิน'
+      },
+      {
+        content: 'โฉนดที่ดิน  236852 ต.ในมือง อ.เมือง จ.นนทบุรี 11000',
+      },
+      {
+        content: 'PR001-000000001',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'PR001-000000001',
+        classNameTd: classNameTextCenter
+      }
     ]
   }
 ];
@@ -286,28 +398,70 @@ detailDataContact[4][0].header[1] = [
 detailDataContact[4][0].body = [
   {
     td: [
-      '1',
-      'DOC000001',
-      'สัญญากู้เงินต่าง ๆ',
-      'สัญญากู้เงิน',
-      '2018-DOC000001.xls',
-      'สัญญากู้เงินเพื่อผู้บริโภค',
-      '1',
-      '1',
-      '2'
+      {
+        content: '1'
+      },
+      {
+        content: 'DOC000001'
+      },
+      {
+        content: 'สัญญากู้เงินต่าง ๆ'
+      },
+      {
+        content: 'สัญญากู้เงิน'
+      },
+      {
+        content: '2018-DOC000001.pdf'
+      },
+      {
+        content: 'สัญญากู้เงินเพื่อผู้บริโภค'
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '2',
+        classNameTd: classNameTextRight
+      }
     ]
   },
   {
     td: [
-      '2',
-      'DOC000002',
-      'สหนังสือยินยอมต่าง ๆ',
-      'บันทึกข้อตกลงสินเชื่อ',
-      '2018-DOC000002.xls',
-      'บันทึกข้อตกลงสินเชื่อ',
-      '2',
-      '1',
-      '3'
+      {
+        content: '2'
+      },
+      {
+        content: 'DOC000002'
+      },
+      {
+        content: 'หนังสือยินยอมต่าง ๆ'
+      },
+      {
+        content: 'บันทึกข้อตกลงสินเชื่อ'
+      },
+      {
+        content: '2018-DOC000002.pdf'
+      },
+      {
+        content: 'บันทึกข้อตกลงสินเชื่อ'
+      },
+      {
+        content: '2',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '3',
+        classNameTd: classNameTextRight
+      }
     ]
   }
 ];
@@ -350,28 +504,70 @@ detailDataContact[4][1].header[1] = [
 detailDataContact[4][1].body = [
   {
     td: [
-      '1',
-      'H4350/M004',
-      'จดทะเบียนสิทธินิติกรรมจำนอง',
-      'หนังสือจำนองสัญญาที่ดิน',
-      '2018-H4350-M004.xls',
-      'หนังสือสัญญาจำนองที่ดิน',
-      '1',
-      '1',
-      '2'
+      {
+        content: '1'
+      },
+      {
+        content: 'H4350/M004'
+      },
+      {
+        content: 'จดทะเบียนสิทธินิติกรรมจำนอง'
+      },
+      {
+        content: 'หนังสือจำนองสัญญาที่ดิน'
+      },
+      {
+        content: '2018-H4350-M004.pdf'
+      },
+      {
+        content: 'หนังสือสัญญาจำนองที่ดิน'
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '2',
+        classNameTd: classNameTextRight
+      }
     ]
   },
   {
     td: [
-      '2',
-      'H4350/M005',
-      'จดทะเบียนสิทธินิติกรรมจำนอง',
-      'บันทึกต่อท้ายสัญญาจำนองเป็นประกัน',
-      '2018-H4350-M005.xls',
-      'บันทึกต่อท้ายสัญญาจำนองเป็นประกัน',
-      '2',
-      '1',
-      '3'
+      {
+        content: '2'
+      },
+      {
+        content: 'H4350/M005'
+      },
+      {
+        content: 'จดทะเบียนสิทธินิติกรรมจำนอง'
+      },
+      {
+        content: 'บันทึกต่อท้ายสัญญาจำนองเป็นประกัน'
+      },
+      {
+        content: '2018-H4350-M005.pdf'
+      },
+      {
+        content: 'บันทึกต่อท้ายสัญญาจำนองเป็นประกัน'
+      },
+      {
+        content: '2',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '1',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '3',
+        classNameTd: classNameTextRight
+      }
     ]
   }
 ];
@@ -395,58 +591,143 @@ mainDataTableGuarantee.body = [
       dataTip: true,
       dataTipFor: 'detailGuarantee',
       td: [
-        '1',
-        'PR0001',
-        '1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170',
-        '10,000,000',
-        '01/01/2561',
-        '000001 ที่ดิน',
-        'searchIcon'
+        {
+          content: "1"
+        },
+        {
+          content: "PR0001"
+        },
+        {
+          content: "1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170"
+        },
+        {
+          content: "10,000,000.00",
+          classNameTd: classNameTextRight
+        },
+        {
+          content: "01/01/2561",
+          classNameTd: classNameTextCenter
+        },
+        {
+          content: "000001 ที่ดิน"
+        },
+        {
+          content: "searchIcon",
+          classNameTd: classNameTextCenter
+        }
       ]
     },
-    {
-      td: [
-        '2',
-        'PR0002',
-        '2 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170',
-        '5,000,000',
-        '01/01/2561',
-        '000001 ที่ดิน',
-        'searchIcon'
-      ]
-    },
-    {
-      td: [
-        '3',
-        'PR0003',
-        '3 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170',
-        '7,000,000',
-        '01/01/2561',
-        '000001 ที่ดิน',
-        'searchIcon'
-      ]
-    },
-    {
-      td: [
-        '4',
-        'PR0004',
-        '4 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170',
-        '2,000,000',
-        '01/01/2561',
-        '000001 ที่ดิน',
-        'searchIcon'
-      ]
-    },
-    {
-      td: [
-        '5',
-        'PR0005',
-        '5 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170',
-        '600,000',
-        '01/01/2561',
-        '000001 ที่ดิน',
-        'searchIcon'
-      ]
+  {
+    td: [
+      {
+        content: "2"
+      },
+      {
+        content: "PR0002"
+      },
+      {
+        content: "1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170"
+      },
+      {
+        content: "5,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "000001 ที่ดิน"
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: "3"
+      },
+      {
+        content: "PR0003"
+      },
+      {
+        content: "1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170"
+      },
+      {
+        content: "7,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "000001 ที่ดิน"
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: "4"
+      },
+      {
+        content: "PR0004"
+      },
+      {
+        content: "1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170"
+      },
+      {
+        content: "2,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "000001 ที่ดิน"
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: "5"
+      },
+      {
+        content: "PR0005"
+      },
+      {
+        content: "1 ถ.หนองน้ำ ต.ในเมือง อ.เมือง จ.เชียงราย 10170"
+      },
+      {
+        content: "600,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "000001 ที่ดิน"
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
+    ]
     }
 ];
 
@@ -472,77 +753,217 @@ mainDataTableContact.body = [
     dataTip: true,
     dataTipFor: 'detailContact',
     td: [
-      "1",
-      "53-4310-00001",
-      "01/01/2561",
-      "10/01/25561",
-      "5,000,000",
-      "สินเชื่อรายย่อย",
-      "AR-000001",
-      "000010153",
-      "1111/2561",
-      "10/01/25561",
-      'searchIcon'
+      {
+        content: "1",
+      },
+      {
+        content: "53-4310-00001",
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "10/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "5,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "สินเชื่อรายย่อย",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "AR-000001"
+      },
+      {
+        content: "000010153"
+      },
+      {
+        content: "1111/2561"
+      },
+      {
+        content: "10/01/25561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
     ]
   },
   {
     td: [
-      "2",
-      "53-4310-00002",
-      "01/01/2561",
-      "10/01/25561",
-      "8,000,000",
-      "สินเชื่อรายย่อย",
-      "AR-000002",
-      "000010153",
-      "1111/2561",
-      "10/01/25561",
-      'searchIcon'
+      {
+        content: "2",
+      },
+      {
+        content: "53-4310-00002",
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "10/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "8,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "สินเชื่อรายย่อย",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "AR-000002"
+      },
+      {
+        content: "000010153"
+      },
+      {
+        content: "1111/2561"
+      },
+      {
+        content: "10/01/25561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
     ]
   },
   {
     td: [
-      "3",
-      "53-4310-00003",
-      "01/01/2561",
-      "10/01/25561",
-      "2,000,000",
-      "สินเชื่อรายย่อย",
-      "AR-000003",
-      "000010153",
-      "1111/2561",
-      "10/01/25561",
-      'searchIcon'
+      {
+        content: "3",
+      },
+      {
+        content: "53-4310-00003",
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "10/01/2563",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "7,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "สินเชื่อรายย่อย",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "AR-000001"
+      },
+      {
+        content: "000010153"
+      },
+      {
+        content: "1111/2561"
+      },
+      {
+        content: "10/01/25561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
     ]
   },
   {
     td: [
-      "4",
-      "53-4310-00004",
-      "01/01/2561",
-      "10/01/25561",
-      "9,000,000",
-      "สินเชื่อรายย่อย",
-      "AR-000004",
-      "000010153",
-      "1111/2561",
-      "10/01/25561",
-      'searchIcon'
+      {
+        content: "4",
+      },
+      {
+        content: "53-4310-00004",
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "10/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "9,000,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "สินเชื่อรายย่อย",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "AR-000004"
+      },
+      {
+        content: "000010153"
+      },
+      {
+        content: "1111/2561"
+      },
+      {
+        content: "10/01/25561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
     ]
   },
   {
     td: [
-      "5",
-      "53-4310-00005",
-      "01/01/2561",
-      "10/01/25561",
-      "3,000,000",
-      "สินเชื่อรายย่อย",
-      "AR-000005",
-      "000010153",
-      "1111/2561",
-      "10/01/25561",
-      'searchIcon'
+      {
+        content: "5",
+      },
+      {
+        content: "53-4310-00005",
+      },
+      {
+        content: "01/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "10/01/2561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "500,000.00",
+        classNameTd: classNameTextRight
+      },
+      {
+        content: "สินเชื่อรายย่อย",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "AR-000005"
+      },
+      {
+        content: "000010153"
+      },
+      {
+        content: "1111/2561"
+      },
+      {
+        content: "10/01/25561",
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: "searchIcon",
+        classNameTd: classNameTextCenter
+      }
     ]
   }
 ];

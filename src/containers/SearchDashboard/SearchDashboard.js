@@ -73,11 +73,12 @@ const MyMapComponent = compose(
 
 
 const labelGuarantee = data.mainDataTableGuarantee.body.map((e) => {
-  return e.td[1];
+  return e.td[1].content;
 });
 
 const dataGuarantee = data.mainDataTableGuarantee.body.map((e) => {
-  return +(e.td[3].replace(/,/g, ""));
+  console.log("e.td[3] :", e.td[3]);
+  return +(e.td[3].content.replace(/,/g, ""));
 });
 
 console.log("dataGuarantee :", dataGuarantee);
@@ -140,11 +141,11 @@ const optionsGuarantee = {
 
 
 const labelContact = data.mainDataTableContact.body.map((e) => {
-  return e.td[1];
+  return e.td[1].content;
 });
 
 const dataContact = data.mainDataTableContact.body.map((e) => {
-  return +(e.td[4].replace(/,/g, ""));
+  return +(e.td[4].content.replace(/,/g, ""));
 });
 
 const doughnutContact = {
@@ -220,7 +221,7 @@ class SearchDashboard extends Component {
         actType: "",
         tooltipGuaranteeOpen:  true,
         tooltipContactOpen: false,
-        viewDetailGuarantee: false,
+        viewDetailGuarantee: true,
         viewDetailContact: false,
         activeTab: "1",
         toggleModalGuarantee: false,
@@ -873,18 +874,29 @@ class SearchDashboard extends Component {
             <TabContent activeTab={this.state.activeTab}>
               <TabPane tabId="1">
                 <Row>
-                  <Col xs="12">
+                  <Col xs="12" md="6">
                     <Card>
                       <CardHeader>
                         <strong>1.1 ที่ดิน</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
-                          <Col xs="12" md="6">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.landLeft} classNameF="labelSearch" classNameUl="data-detail-first"></ContentDetail>
+                          <Col xs="12" md="12">
+                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.landLeft} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
                           </Col>
-                          <Col xs="12" md="6">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.landRight} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
+                        </Row>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                  <Col xs="12" md="6">
+                    <Card>
+                      <CardHeader>
+                        <strong>1.2 รายละเอียดโฉนด</strong>
+                      </CardHeader>
+                      <CardBody>
+                        <Row>
+                          <Col xs="12" md="12">
+                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.detailOfDeed} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
                           </Col>
                         </Row>
                       </CardBody>
@@ -892,282 +904,29 @@ class SearchDashboard extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs="12">
-                    <Card>
-                    <CardHeader>
-                      <strong>1.2 รายละเอียดโฉนด</strong>
-                    </CardHeader>
-                    <CardBody>
-                      <Row>
-                        <Col xs="12" md="6">
-                          <ul className="data-detail-first">
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  เลขที่โฉนด :
-                                </Col>
-                                <Col xs="8">
-                                  236542
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  เลขที่ดิน :
-                                </Col>
-                                <Col xs="8">
-                                  1234
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  เล่ม :
-                                </Col>
-                                <Col xs="8">
-                                  1
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  ตำบล :
-                                </Col>
-                                <Col xs="8">
-                                  ในเมือง
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  จังหวัด :
-                                </Col>
-                                <Col xs="8">
-                                  นนทบุรี
-                                </Col>
-                              </Row>
-                            </li>
-                          </ul>
-                        </Col>
-                        <Col xs="12" md="6">
-                          <ul className="data-detail">
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  ระวาง :
-                                </Col>
-                                <Col xs="8">
-                                  5136 IV 6645-10
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  หน้าสำรวจ :
-                                </Col>
-                                <Col xs="8">
-                                  11000
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  หน้า :
-                                </Col>
-                                <Col xs="8">
-                                  54
-                                </Col>
-                              </Row>
-                            </li>
-                            <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  อำเภอ :
-                                </Col>
-                                <Col xs="8">
-                                  ในเมือง
-                                </Col>
-                              </Row>
-                            </li>
-                          </ul>
-                        </Col>
-                      </Row>
-                    </CardBody>
-                  </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
+                  <Col xs="12" md="6">
                     <Card>
                       <CardHeader>
                         <strong>1.3 เขตปกครอง</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    รหัสตามเขตปกครอง :
-                                  </Col>
-                                  <Col xs="8">
-                                    120105
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    อำเภอ :
-                                  </Col>
-                                  <Col xs="8">
-                                    ในเมือง
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    รหัสไปรษณีย์ :
-                                  </Col>
-                                  <Col xs="8">
-                                    11000
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ตำบล :
-                                  </Col>
-                                  <Col xs="8">
-                                    ในเมือง
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    จังหวัด :
-                                  </Col>
-                                  <Col xs="8">
-                                    นนทบุรี
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
+                          <Col xs="12" md="12">
+                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.adminRegion} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
                           </Col>
                         </Row>
                       </CardBody>
                     </Card>
                   </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
+                  <Col xs="12" md="6">
                     <Card>
                       <CardHeader>
                         <strong>1.4 ที่ตั้ง</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    เลขที่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    1
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    หมู่บ้าน :
-                                  </Col>
-                                  <Col xs="8">
-                                    -
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ถนน :
-                                  </Col>
-                                  <Col xs="8">
-                                    สะอาด
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    อำเภอ/เขต :
-                                  </Col>
-                                  <Col xs="8">
-                                    ในเมือง
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    หมู่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    -
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ตรอก/ซอย :
-                                  </Col>
-                                  <Col xs="8">
-                                    1
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ตำบล/แขวง :
-                                  </Col>
-                                  <Col xs="8">
-                                    ในเมือง
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    จังหวัด :
-                                  </Col>
-                                  <Col xs="8">
-                                    นนทบุรี
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
+                          <Col xs="12" md="12">
+                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.position} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
                           </Col>
                         </Row>
                       </CardBody>
