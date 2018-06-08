@@ -1848,307 +1848,243 @@ class SearchDashboard extends Component {
               </TabPane>
               <TabPane tabId="3">
                 <Row>
-                  <Col xs="12">
+                  <Col xs="6">
                     <Card>
                       <CardHeader>
                         <strong>3.1 รายละเอียดราคาประเมิน</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
+                          <Col xs="12" md="12">
+                            <ul className="data-detail">
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     วันที่ประเมิน :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     01/04/2561
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ราคาที่ประเมิน :
-                                  </Col>
-                                  <Col xs="7">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ราคาประเมิน (Original) :
-                                  </Col>
-                                  <Col xs="7">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ประเภทการประเมิน :
-                                  </Col>
-                                  <Col xs="7">
-                                    ประเมินภายใน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    Marget Price :
-                                  </Col>
-                                  <Col xs="7">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    มูลค่าสปส.ทำประกัน :
-                                  </Col>
-                                  <Col xs="7">
-                                    10,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    วันที่ประเมินครั้งก่อน :
-                                  </Col>
-                                  <Col xs="7">
-                                    01/04/2560
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ราคาประเมินครั้งก่อน :
-                                  </Col>
-                                  <Col xs="7">
-                                    9,000,000.00 บาท
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ประเภทการประเมินครั้งก่อน :
-                                  </Col>
-                                  <Col xs="7">
-                                    ประเมินภายใน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ความถี่ในการประเมิน :
-                                  </Col>
-                                  <Col xs="7">
-                                    6 เดือน
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    หมายเลขงานประเมิน :
-                                  </Col>
-                                  <Col xs="7">
-                                    000001
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    Key By :
-                                  </Col>
-                                  <Col xs="7">
-                                    AUTO
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    สาขา/ฝ่ายงาน :
-                                  </Col>
-                                  <Col xs="7">
-                                    0001
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    เป็นหลักประกันร่วม :
-                                  </Col>
-                                  <Col xs="7">
-                                    ไม่ใช่
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    จำนวนลูก :
-                                  </Col>
-                                  <Col xs="7">
-                                    2 คน
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     เลขที่ซอง :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     000001
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     สถานที่เก็บรักษา :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     -
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
+                                  <Col xs="6" className="labelSearch">
+                                    ราคาที่ประเมิน :
                                   </Col>
-                                  <Col xs="8">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="8">
-                                    &nbsp;
+                                  <Col xs="6">
+                                    10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
+                                    ราคาประเมิน (Original) :
+                                  </Col>
+                                  <Col xs="6">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    ประเภทการประเมิน :
+                                  </Col>
+                                  <Col xs="6">
+                                    ประเมินภายใน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    Marget Price :
+                                  </Col>
+                                  <Col xs="6">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
                                     Marget Price Original :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
+                                    มูลค่าสปส.ทำประกัน :
+                                  </Col>
+                                  <Col xs="6">
+                                    10,000,000.00 บาท
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
                                     มูลค่าสปส.ทำประกัน Original :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
+                                  <Col xs="6" className="labelSearch">
+                                    วันที่ประเมินครั้งก่อน :
                                   </Col>
-                                  <Col xs="8">
-                                    &nbsp;
+                                  <Col xs="6">
+                                    01/04/2560
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
-                                    ราคาประเมินครั้งก่อน Original :
+                                  <Col xs="6" className="labelSearch">
+                                    ราคาประเมินครั้งก่อน :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     9,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
+                                  <Col xs="6" className="labelSearch">
+                                    ราคาประเมินครั้งก่อน Original :
                                   </Col>
-                                  <Col xs="8">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="8">
-                                    &nbsp;
+                                  <Col xs="6">
+                                    9,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    &nbsp;
+                                  <Col xs="6" className="labelSearch">
+                                    ประเภทการประเมินครั้งก่อน :
                                   </Col>
-                                  <Col xs="8">
-                                    &nbsp;
+                                  <Col xs="6">
+                                    ประเมินภายใน
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
+                                    ความถี่ในการประเมิน :
+                                  </Col>
+                                  <Col xs="6">
+                                    6 เดือน
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    หมายเลขงานประเมิน :
+                                  </Col>
+                                  <Col xs="6">
+                                    000001
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    Key By :
+                                  </Col>
+                                  <Col xs="6">
+                                    AUTO
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
                                     Key Date :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     01/01/2559
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     Update By :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     10001 - นายธนาคาร ซื่อสัตย์
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="5" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     Update Date :
                                   </Col>
-                                  <Col xs="7">
+                                  <Col xs="6">
                                     01/01/2559
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    สาขา/ฝ่ายงาน :
+                                  </Col>
+                                  <Col xs="6">
+                                    0001
+                                  </Col>
+                                </Row>
+                              </li>
+
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    เป็นหลักประกันร่วม :
+                                  </Col>
+                                  <Col xs="6">
+                                    ไม่ใช่
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    จำนวนลูก :
+                                  </Col>
+                                  <Col xs="6">
+                                    2 คน
                                   </Col>
                                 </Row>
                               </li>
@@ -2158,54 +2094,242 @@ class SearchDashboard extends Component {
                       </CardBody>
                     </Card>
                   </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
+                  <Col xs="12" md="6">
                     <Card>
                       <CardHeader>
                         <strong>3.2 ราคาซื้อ/ขายทรัพย์ตามตลาด</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
-                          <Col xs="12" md="6">
+                          <Col xs="12" md="12">
                             <ul className="data-detail">
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     ราคาซื้อ/ขายทรัพย์ :
                                   </Col>
-                                  <Col xs="8">
+                                  <Col xs="6">
                                     10,000,000.00 บาท
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     วันที่ซื้อ/ขาย :
                                   </Col>
-                                  <Col xs="8">
+                                  <Col xs="6">
                                     01/04/2560
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     LTV :
                                   </Col>
-                                  <Col xs="8">
+                                  <Col xs="6">
                                     -
                                   </Col>
                                 </Row>
                               </li>
                               <li>
                                 <Row>
-                                  <Col xs="4" className="labelSearch">
+                                  <Col xs="6" className="labelSearch">
                                     วันที่บันทึก LTV :
                                   </Col>
-                                  <Col xs="8">
+                                  <Col xs="6">
                                     -
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
+                                  </Col>
+                                </Row>
+                              </li>
+                              <li>
+                                <Row>
+                                  <Col xs="6" className="labelSearch">
+                                    &nbsp;
+                                  </Col>
+                                  <Col xs="6">
+                                    &nbsp;
                                   </Col>
                                 </Row>
                               </li>

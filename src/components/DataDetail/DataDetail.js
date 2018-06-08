@@ -64,12 +64,6 @@ class DataDetail extends Component {
         contentF = <span>&nbsp;</span>
       }
 
-      if(contentS) {
-        contentS += " :";
-      }else {
-        contentS = <span>&nbsp;</span>
-      }
-
       return (<li key={i}>
         <Row>
           <Col xs={colF} className={colClassNameF}>

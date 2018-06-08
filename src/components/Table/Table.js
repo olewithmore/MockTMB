@@ -139,7 +139,7 @@ class ContentTable extends Component {
       <React.Fragment>
         <Row>
           <Col xs="1" style={ { textAlign: 'left', paddingTop: '5px', paddingRight: '0px', fontSize: '11px' } }>
-            แสดงข้อมูลจำนวน
+            แสดงข้อมูล
           </Col>
           <Col xs="1" style={ {paddingLeft: '5px', paddingRight: '5px'}}>
               <select className="form-control form-control-sm">
