@@ -103,23 +103,27 @@ class ContentTable extends Component {
 
     let body = this.props.body.map((e, i) => {
       // let dataTip = (e.dataTip);
-      let eveClick = function(){};
       let td;
 
-      let listTd = e.td.map(({content, classNameTd}, l) => {
+      let listTd = e.td.map(({content, classNameTd, colspan}, l) => {
         if(content === 'searchIcon'){
-          td = (<React.Fragment key={l}>
-            <td className={classNameTd} key={l} onClick={() => { this.props.openModalDetail() }}>
-              <span><i className="fa fa-search"></i></span>
-            </td>
-          </React.Fragment>);
+          let eveClick = this.props.openModalDetail || function(){};
+          td = (
+            <React.Fragment key={l}>
+              <td className={classNameTd} key={l} onClick={() => { eveClick() }}>
+                <span><i className="fa fa-search"/></span>
+              </td>
+            </React.Fragment>
+          );
         }else {
-          eveClick = this.props.viewDetail;
-          td = (<React.Fragment key={l}>
-            <td className={classNameTd} key={l} onClick={() => {this.props.viewDetail(true);}}>
-              <span>{content}</span>
-            </td>
-          </React.Fragment>);
+          let eveClick = this.props.viewDetail || function(boo) {};
+          td = (
+            <React.Fragment key={l}>
+              <td className={classNameTd} key={l} colspan={colspan} onClick={() => { eveClick(true);}}>
+                <span>{content}</span>
+              </td>
+            </React.Fragment>
+          );
         }
 
         return td;
@@ -138,20 +142,20 @@ class ContentTable extends Component {
     return (
       <React.Fragment>
         <Row>
-          <Col xs="1" style={ { textAlign: 'left', paddingTop: '5px', paddingRight: '0px', fontSize: '11px' } }>
+          <Col xs="6" md="1" style={ { textAlign: 'left', paddingTop: '5px', paddingRight: '0px', fontSize: '11px' } }>
             แสดงข้อมูล
           </Col>
-          <Col xs="1" style={ {paddingLeft: '5px', paddingRight: '5px'}}>
+          <Col xs="6" md="1" style={ {paddingLeft: '5px', paddingRight: '5px'}}>
               <select className="form-control form-control-sm">
                 <option value="10">10</option><option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
               </select>
           </Col>
-          <Col xs="6">
+          <Col xs="0" md="6">
             &nbsp;
           </Col>
-          <Col xs="4">
+          <Col xs="12" md="4">
             <div className="form-group form-group-sm react-bs-table-search-form input-group input-group-sm">
               <input className="form-control " type="text" placeholder="Search" value="" style={ {zIndex: 0} }/>
               <span className="input-group-btn"><button className="btn btn-default btn-secondary  react-bs-table-search-clear-btn" type="button">

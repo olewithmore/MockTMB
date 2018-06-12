@@ -3,7 +3,6 @@ label.switch {
 }
 
 .resultProfileImg,
-.labelSearch,
 .paginationDataQuarantee {
     text-align: right;
 }
@@ -25,6 +24,11 @@ label.switch {
 .tooltipDetail ul,
 .resultProfileDetail ul{
     list-style: none;
+}
+
+.data-detail,
+.data-detail-first {
+    font-size: 13px;
 }
 
 .tooltipDetail {

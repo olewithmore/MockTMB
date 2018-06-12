@@ -70,20 +70,12 @@ detailDataGuarantee.dataLand.detailOfDeed = [
   { f: "เล่ม", s: "1"},
   { f: "ระวาง", s: "5136 IV 6645-10"},
   { f: "หน้าสำรวจ", s: "11000"},
-  { f: "หน้า", s: "51"},
-  { f: "", s: ""},
-  { f: "", s: ""}
+  { f: "หน้า", s: "51"}
 ];
 
 detailDataGuarantee.dataLand.adminRegion = [
   { f: "รหัสตามเขตปกครอง", s: "120105"},
-  { f: "ที่ตั้งเขต", s: "ต.ในเมือง อ.เมือง จ.นนทบุรี 11000"},
-  { f: "", s: ""},
-  { f: "", s: ""},
-  { f: "", s: ""},
-  { f: "", s: ""},
-  { f: "", s: ""},
-  { f: "", s: ""}
+  { f: "ที่ตั้งเขต", s: "ต.ในเมือง อ.เมือง จ.นนทบุรี 11000"}
 ];
 
 detailDataGuarantee.dataLand.position = [
@@ -98,6 +90,209 @@ detailDataGuarantee.dataLand.position = [
 ];
 
 detailDataGuarantee.detailAssetmentLand = {};
+
+detailDataGuarantee.detailEstimate = {};
+
+
+detailDataGuarantee.detailEstimate.valuationDetails = [];
+
+
+detailDataGuarantee.detailEstimate.valuationDetails[0] = {};
+detailDataGuarantee.detailEstimate.valuationDetails[0].header = [
+  "ประเภท",
+  "ตรว./ ตรม.ละ (บาท)",
+  "เนื้อที่",
+  "จำนวนเงิน (บาท)"
+];
+detailDataGuarantee.detailEstimate.valuationDetails[0].body = [
+  {
+    td: [
+      {
+        content: '-',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '35,000.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '100.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '3,500,000.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  }
+];
+
+
+detailDataGuarantee.detailEstimate.valuationDetails[1] = {};
+detailDataGuarantee.detailEstimate.valuationDetails[1].header = [
+  "ประเภท",
+  "ตรว./ ตรม.ละ (บาท)",
+  "เนื้อที่",
+  "จำนวนเงิน (บาท)"
+];
+detailDataGuarantee.detailEstimate.valuationDetails[1].body = [
+  {
+    td: [
+      {
+        content: 'ที่ดิน',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'สิ่งปลูกสร้าง',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'อื่นๆ',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'รวมราคาประเมินครั้งก่อน',
+        classNameTd: classNameTextCenter,
+        colspan: 3
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  }
+];
+
+detailDataGuarantee.detailEstimate.valuationDetails[2] = {};
+detailDataGuarantee.detailEstimate.valuationDetails[2].header = [
+  "ประเภท",
+  "ตรว./ ตรม.ละ (บาท)",
+  "เนื้อที่",
+  "จำนวนเงิน (บาท)"
+];
+detailDataGuarantee.detailEstimate.valuationDetails[2].body = [
+  {
+    td: [
+      {
+        content: 'ที่ดิน',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '4,000,000.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'สิ่งปลูกสร้าง',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'อื่นๆ',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'รวมราคาประเมินมูลค่าตลาด',
+        classNameTd: classNameTextCenter,
+        colspan: 3
+      },
+      {
+        content: '4,000,000.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  }
+];
 
 /******************************* data guarantee detail *******************************/
 
@@ -475,13 +670,13 @@ detailDataContact[4][1].header[0] = [
     ill: false
   },
   {
-    text: "เลขที่เอกสาร",
+    text: "เลขที่เอกสารสิทธิ์",
     ill: false
   },
   {
-    text: "เอกสาร",
+    text: "หลักประกัน",
     ill: true,
-    n: 3
+    n: 2
   },
   {
     text: "รายการเอกสาร",

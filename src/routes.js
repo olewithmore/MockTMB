@@ -249,11 +249,16 @@ const Blank = Loadable({
   loading: Loading,
   });
 
+const Appraise = Loadable({
+    loader: () => import('./containers/Appraise/Main'),
+  loading: Loading,
+  });
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', name: 'หน้าหลัก', component: DefaultLayout, exact: true },
   { path: '/search-dashboard', name: 'ค้นหา ลูกค้า, หลักประกัน, สัญญา', component: SearchDashboard, exact: true },
-  { path: '/appraise', name: 'ประเมินราคา', component: Blank, exact: true },
+  { path: '/appraise', name: 'ประเมินราคา', component: Appraise, exact: true },
   { path: '/credit', name: 'พิธีการสินเชื่อ', component: Blank, exact: true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },

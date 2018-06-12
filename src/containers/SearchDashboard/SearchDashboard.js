@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import './SearchDashboard.css';
 import data from './data';
 import ReactTooltip from 'react-tooltip';
+import $ from 'jquery';
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 import classnames from 'classnames';
 
-import ContentTable from '../../components/Table/Table';
 
 //detail component
 import ContentDetail from '../../components/DataDetail/DataDetail';
+import ContentTable from '../../components/Table/Table';
+import SearchResult from '../../components/SearchResult/SearchResult';
 
 //dataTeble component
 import DataTable from '../../components/DataTable/DataTable';
@@ -77,11 +79,8 @@ const labelGuarantee = data.mainDataTableGuarantee.body.map((e) => {
 });
 
 const dataGuarantee = data.mainDataTableGuarantee.body.map((e) => {
-  console.log("e.td[3] :", e.td[3]);
   return +(e.td[3].content.replace(/,/g, ""));
 });
-
-console.log("dataGuarantee :", dataGuarantee);
 
 const doughnutGuarantee = {
   labels: labelGuarantee,
@@ -213,15 +212,15 @@ class SearchDashboard extends Component {
         showCustomer: true,
         showGuarantee: true,
         showContact: true,
-        showSerach: false,
-        searchEnable: true,
+        showSerach: true,
+        searchEnable: false,
         guaranteeType: "",
         docType: "",
         statusType: "",
         actType: "",
-        tooltipGuaranteeOpen:  true,
+        tooltipGuaranteeOpen:  false,
         tooltipContactOpen: false,
-        viewDetailGuarantee: true,
+        viewDetailGuarantee: false,
         viewDetailContact: false,
         activeTab: "1",
         toggleModalGuarantee: false,
@@ -285,6 +284,7 @@ class SearchDashboard extends Component {
   }
 
   viewDetailGuarantee(v) {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
     let tempObject = {...this.state};
     tempObject.viewDetailGuarantee = v;
     tempObject.viewDetailContact = false;
@@ -293,6 +293,7 @@ class SearchDashboard extends Component {
   }
 
   viewDetailContact(v) {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
     let tempObject = {...this.state};
     tempObject.viewDetailGuarantee = false;
     tempObject.viewDetailContact = true;
@@ -301,6 +302,7 @@ class SearchDashboard extends Component {
   }
 
   backToDetail() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
     let tempObject = {...this.state};
     tempObject.viewDetailGuarantee = false;
     tempObject.viewDetailContact = false;
@@ -338,9 +340,9 @@ class SearchDashboard extends Component {
     let navButton = null;
     let content = null;
 
-    if(this.state.tooltipGuaranteeOpen){
+    // if(this.state.tooltipGuaranteeOpen){
       map = <MyMapComponent isMarkerShown={true}></MyMapComponent>;
-    }
+    // }
 
     if(this.state.searchEnable){
       searchResult = (
@@ -720,7 +722,7 @@ class SearchDashboard extends Component {
           </Modal>
           <Modal isOpen={this.state.toggleModalContact} toggle={this.toggleModalContact}
                  className={'modal-info modal-lg ' + this.props.className}>
-            <ModalHeader toggle={this.toggleModalContact}>รายละเอียดนิจิกรรมสัญญา</ModalHeader>
+            <ModalHeader toggle={this.toggleModalContact}>รายละเอียดนิติกรรมสัญญา</ModalHeader>
             <ModalBody>
               <div className="tooltipDetail">
                 <ul>
@@ -875,983 +877,1652 @@ class SearchDashboard extends Component {
               <TabPane tabId="1">
                 <Row>
                   <Col xs="12" md="6">
-                    <Card>
-                      <CardHeader>
-                        <strong>1.1 ที่ดิน</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="12">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.landLeft} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>1.1 ที่ดิน</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ContentDetail dataList={data.detailDataGuarantee.dataLand.landLeft} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>1.3 เขตปกครอง</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ContentDetail dataList={data.detailDataGuarantee.dataLand.adminRegion} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
                   </Col>
                   <Col xs="12" md="6">
-                    <Card>
-                      <CardHeader>
-                        <strong>1.2 รายละเอียดโฉนด</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="12">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.detailOfDeed} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12" md="6">
-                    <Card>
-                      <CardHeader>
-                        <strong>1.3 เขตปกครอง</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="12">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.adminRegion} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                  <Col xs="12" md="6">
-                    <Card>
-                      <CardHeader>
-                        <strong>1.4 ที่ตั้ง</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="12">
-                            <ContentDetail dataList={data.detailDataGuarantee.dataLand.position} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>1.2 รายละเอียดโฉนด</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ContentDetail dataList={data.detailDataGuarantee.dataLand.detailOfDeed} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>1.4 ที่ตั้ง</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ContentDetail dataList={data.detailDataGuarantee.dataLand.position} classNameF="labelSearch" classNameUl="data-detail"></ContentDetail>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </TabPane>
               <TabPane tabId="2">
                 <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.1 ระยะกว้างยาวโดยประมาณและเขตติดต่อ</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ทิศตะวันออก :
-                                  </Col>
-                                  <Col xs="8">
-                                    5.90 เมตร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ทิศตะวันตก :
-                                  </Col>
-                                  <Col xs="8">
-                                    11.80 เมตร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ทิศเหนือ :
-                                  </Col>
-                                  <Col xs="8">
-                                    16.50 เมตร
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ทิศใต้ :
-                                  </Col>
-                                  <Col xs="8">
-                                    17.80 เมตร
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ติดต่อกับเลขที่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    000001
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ติดต่อกับเลขที่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    000002
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                              <Row>
-                                <Col xs="4" className="labelSearch">
-                                  ติดต่อกับเลขที่ :
-                                </Col>
-                                <Col xs="8">
-                                  000003
-                                </Col>
-                              </Row>
-                            </li>
-                              <li>
-                                <Row>
-                                  <Col xs="4" className="labelSearch">
-                                    ติดต่อกับเลขที่ :
-                                  </Col>
-                                  <Col xs="8">
-                                    ทางหลวงเทศบาล
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.2 สภาพที่ดิน</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ระดับ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ลุ่ม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ถมแล้ว</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="เนินเขา" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ที่สวน</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ที่ไร่</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ที่นา</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.3 ทำเล</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้า</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้าและที่อยู่อาศัย</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="ตลาดสด" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ย่านอุตสาหกรรม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ย่านห่างไกลชุมชน</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.4 ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="1" md="2" className="labelSearch">
-                            <strong>2.4.1 สภาพที่</strong>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ไม่มีทางเข้าออก</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ติดแม่นน้ำ/คลอง/ลำธาร</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ทางเดิน</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มีภาระจำยอม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">รถยนตร์เข้าถึง</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
+                  <Col xs="12" md="6">
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.1 ระยะกว้างยาวโดยประมาณและเขตติดต่อ</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                        ทิศตะวันออก :
+                                      </Col>
+                                      <Col xs="9">
+                                        5.90 เมตร ติดต่อกับเลขที่ 000001
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                        ทิศตะวันตก :
+                                      </Col>
+                                      <Col xs="9">
+                                        11.80 เมตร ติดต่อกับเลขที่ 000001
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                        ทิศเหนือ :
+                                      </Col>
+                                      <Col xs="9">
+                                        16.50 เมตร ติดต่อกับเลขที่ 000001
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                        ทิศใต้ :
+                                      </Col>
+                                      <Col xs="9">
+                                        17.80 เมตร ติดต่อกับเลขที่ ทางหลวงเทศบาล
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.3 ทำเล</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked/>
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้า</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้าและที่อยู่อาศัย</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ย่านอุตสาหกรรม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ย่านห่างไกลชุมชน</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="4" className="">
+                                        <Input type="text" className="form-control-sm" value="ตลาดสด" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                              <Col xs="12" md="6">
+                                <ul className="data-detail">
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.4 ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="6" className="labelSearch">
+                                <strong>2.4.1 สภาพที่</strong>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ไม่มีทางเข้าออก</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ติดแม่นน้ำ/คลอง/ลำธาร</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ทางเดิน</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มีภาระจำยอม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">รถยนตร์เข้าถึง</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
 
-                        <Row>
-                          <Col xs="1" md="2" className="labelSearch">
-                            <strong>2.4.2 ติดถนนหรือซอย</strong>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="4" >
-                                    <strong>ชื่อ</strong> ถนนโครงการ
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">สาธารณประโยชน์</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ส่วนบุคคล</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="ตลาดสด" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="4" >
-                                    <strong>สภาพ</strong> ค.ส.ล. ค. ม.
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">จัดสรร</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
+                            <Row>
+                              <Col xs="12" md="6" className="labelSearch">
+                                <strong>2.4.2 ติดถนนหรือซอย</strong>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="4" >
+                                        <strong>ชื่อ</strong> ถนนโครงการ
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">สาธารณประโยชน์</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ส่วนบุคคล</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="4" className="">
+                                        <Input type="text" className="form-control-sm" value="ตลาดสด" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="4" >
+                                        <strong>สภาพ</strong> ค.ส.ล. ค. ม.
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">จัดสรร</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
 
-                        <Row>
-                          <Col xs="1" md="2" className="labelSearch">
-                            <strong>2.4.3 ไฟฟ้า, ประปา</strong>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะไฟฟ้า</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ใช้น้ำบาดาล</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะประปา</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
+                            <Row>
+                              <Col xs="12" md="6" className="labelSearch">
+                                <strong>2.4.3 ไฟฟ้า, ประปา</strong>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะไฟฟ้า</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ใช้น้ำบาดาล</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะประปา</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
 
-                        <Row>
-                          <Col xs="1" md="2" className="labelSearch">
-                            <strong>2.4.4 ท่อระบายน้ำ</strong>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
+                            <Row>
+                              <Col xs="12" md="6" className="labelSearch">
+                                <strong>2.4.4 ท่อระบายน้ำ</strong>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
 
-                      </CardBody>
-                    </Card>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col xs="12" md="6">
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.2 สภาพที่ดิน</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ระดับ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ลุ่ม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ถมแล้ว</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ที่สวน</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ที่ไร่</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ที่นา</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="4" className="">
+                                        <Input type="text" className="form-control-sm" value="เนินเขา" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                              <Col xs="12" md="6">
+                                <ul className="data-detail">
+
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.5 การใช้ประโยชน์</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อุตสาหกรรม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">พานิชยกรรม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="4" className="">
+                                        <Input type="text" className="form-control-sm" value="ตลาดสด" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                              <Col xs="12" md="6">
+                                <ul className="data-detail">
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.6 ภาระผูกพัน</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ให้เช่า</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" >
+                                        <strong>คู่สัญญา</strong> บมจ.ธนาคารทหารไทย
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.7 ราคาซื้อขายที่ดิน ไร่/ตรว.</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="7" >
+                                        <strong>ราคาซื้อขายที่ดิน ไร่/ตรว.</strong> 10,000
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.8 ศักยภาพ</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">สูง</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5" className="">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ต่ำ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">กลาง</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="4" className="">
+                                        <Input type="text" className="form-control-sm" value="ดีมาก" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs="12" md="12">
+                        <Card>
+                          <CardHeader>
+                            <strong>2.9 ภาระและสิทธิอื่นๆเหนือที่ดิน</strong>
+                          </CardHeader>
+                          <CardBody>
+                            <Row>
+                              <Col xs="12" md="12">
+                                <ul className="data-detail">
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="5">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                  <li>
+                                    <Row>
+                                      <Col xs="3" className="labelSearch">
+                                      </Col>
+                                      <Col xs="2" className="checkbox-other">
+                                        <FormGroup check className="checkbox">
+                                          <Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />
+                                          <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
+                                        </FormGroup>
+                                      </Col>
+                                      <Col xs="7" className="">
+                                        <Input type="textarea" name="textarea-input" id="textarea-input" rows="5"
+                                               placeholder="Content..." value="หนี้ร้อยล้าน" />
+                                      </Col>
+                                    </Row>
+                                  </li>
+                                </ul>
+                              </Col>
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.5 การใช้ประโยชน์</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อุตสาหกรรม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="ตลาดสด" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">พานิชยกรรม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.6 ภาระผูกพัน</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ให้เช่า</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" >
-                                    <strong>คู่สัญญา</strong> บมจ.ธนาคารทหารไทย
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.7 ราคาซื้อขายที่ดิน ไร่/ตรว.</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="7" >
-                                    <strong>ราคาซื้อขายที่ดิน ไร่/ตรว.</strong> 10,000
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.8 ศักยภาพ</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail-first">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">สูง</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5" className="">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ต่ำ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="4" className="">
-                                    <Input type="text" className="form-control-sm" value="ดีมาก" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">กลาง</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs="12">
-                    <Card>
-                      <CardHeader>
-                        <strong>2.9 ภาระและสิทธิอื่นๆเหนือที่ดิน</strong>
-                      </CardHeader>
-                      <CardBody>
-                        <Row>
-                          <Col xs="12" md="6">
-                            <ul className="data-detail">
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="5">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" checked />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="3" className="labelSearch">
-                                  </Col>
-                                  <Col xs="2" className="checkbox-other">
-                                    <FormGroup check className="checkbox">
-                                      <Input className="form-check-input" type="checkbox" name="checkbox1" value="option1" />
-                                      <Label check className="form-check-label" htmlFor="checkbox1">มี</Label>
-                                    </FormGroup>
-                                  </Col>
-                                  <Col xs="7" className="">
-                                    <Input type="textarea" name="textarea-input" id="textarea-input" rows="5"
-                                           placeholder="Content..." value="หนี้ร้อยล้าน" />
-                                  </Col>
-                                </Row>
-                              </li>
-                            </ul>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
+                {/*<hr/>*/}
+
+                {/*<Row>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.3 ทำเล</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้า</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ย่านการค้าและที่อยู่อาศัย</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ย่านอุตสาหกรรม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ย่านห่างไกลชุมชน</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="2" className="checkbox-other">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" className="">*/}
+                                    {/*<Input type="text" className="form-control-sm" value="ตลาดสด" />*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                          {/*<Col xs="12" md="6">*/}
+                            {/*<ul className="data-detail">*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.4 ความสะดวกในการอยู่อาศัยและใช้ประโยชน์</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="6" className="labelSearch">*/}
+                            {/*<strong>2.4.1 สภาพที่</strong>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ไม่มีทางเข้าออก</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ติดแม่นน้ำ/คลอง/ลำธาร</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ทางเดิน</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มีภาระจำยอม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">รถยนตร์เข้าถึง</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="6" className="labelSearch">*/}
+                            {/*<strong>2.4.2 ติดถนนหรือซอย</strong>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" >*/}
+                                    {/*<strong>ชื่อ</strong> ถนนโครงการ*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">สาธารณประโยชน์</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ส่วนบุคคล</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="2" className="checkbox-other">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" className="">*/}
+                                    {/*<Input type="text" className="form-control-sm" value="ตลาดสด" />*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" >*/}
+                                    {/*<strong>สภาพ</strong> ค.ส.ล. ค. ม.*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">จัดสรร</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="6" className="labelSearch">*/}
+                            {/*<strong>2.4.3 ไฟฟ้า, ประปา</strong>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะไฟฟ้า</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ใช้น้ำบาดาล</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มีเฉพาะประปา</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="6" className="labelSearch">*/}
+                            {/*<strong>2.4.4 ท่อระบายน้ำ</strong>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail-first">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                {/*</Row>*/}
+                {/*<hr/>*/}
+
+                {/*<Row>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.5 การใช้ประโยชน์</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ที่อยู่อาศัย</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">อุตสาหกรรม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">พานิชยกรรม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">เกษตรกรรม</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="2" className="checkbox-other">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" className="">*/}
+                                    {/*<Input type="text" className="form-control-sm" value="ตลาดสด" />*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                          {/*<Col xs="12" md="6">*/}
+                            {/*<ul className="data-detail">*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.6 ภาระผูกพัน</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ให้เช่า</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ติดจำนอง</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" >*/}
+                                    {/*<strong>คู่สัญญา</strong> บมจ.ธนาคารทหารไทย*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                {/*</Row>*/}
+                {/*<hr/>*/}
+
+                {/*<Row>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.7 ราคาซื้อขายที่ดิน ไร่/ตรว.</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="7" >*/}
+                                    {/*<strong>ราคาซื้อขายที่ดิน ไร่/ตรว.</strong> 10,000*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.8 ศักยภาพ</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">สูง</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5" className="">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ต่ำ</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">กลาง</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="2" className="checkbox-other">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">อื่นๆ</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="4" className="">*/}
+                                    {/*<Input type="text" className="form-control-sm" value="ดีมาก" />*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                {/*</Row>*/}
+                {/*<hr/>*/}
+
+                {/*<Row>*/}
+                  {/*<Col xs="12" md="6">*/}
+                    {/*<Card>*/}
+                      {/*<CardHeader>*/}
+                        {/*<strong>2.9 ภาระและสิทธิอื่นๆเหนือที่ดิน</strong>*/}
+                      {/*</CardHeader>*/}
+                      {/*<CardBody>*/}
+                        {/*<Row>*/}
+                          {/*<Col xs="12" md="12">*/}
+                            {/*<ul className="data-detail">*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="5">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" checked />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">ไม่มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="3" className="labelSearch">*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="2" className="checkbox-other">*/}
+                                    {/*<FormGroup check className="checkbox">*/}
+                                      {/*<Input className="form-check-input" type="checkbox" disabled name="checkbox1" value="option1" />*/}
+                                      {/*<Label check className="form-check-label" htmlFor="checkbox1">มี</Label>*/}
+                                    {/*</FormGroup>*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="7" className="">*/}
+                                    {/*<Input type="textarea" name="textarea-input" id="textarea-input" rows="5"*/}
+                                           {/*placeholder="Content..." value="หนี้ร้อยล้าน" />*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                            {/*</ul>*/}
+                          {/*</Col>*/}
+                        {/*</Row>*/}
+                      {/*</CardBody>*/}
+                    {/*</Card>*/}
+                  {/*</Col>*/}
+                {/*</Row>*/}
               </TabPane>
               <TabPane tabId="3">
+                <Row>
+                  <Col xs="12">
+                    <SearchResult textHeader={'3.1 รายละเอียดการประเมินราคา'}>
+                      <Row>
+                        <Col xs="12">
+                          <strong>ราคาประเมินราชการ</strong>
+                        </Col>
+                      </Row>
+                      <br/>
+                      <Row>
+                        <Col xs="12">
+                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[0].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[0].body}  />
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col xs="12">
+                          <strong>ราคาประเมินครั้งก่อน เมื่อ 01/01/2018</strong>
+                        </Col>
+                      </Row>
+                      <br/>
+                      <Row>
+                        <Col xs="12">
+                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[1].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[1].body}  />
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col xs="12">
+                          <strong>ราคาประเมินตามสภาพปัจจุบัน เมื่อ 06/01/2018</strong>
+                        </Col>
+                      </Row>
+                      <br/>
+                      <Row>
+                        <Col xs="12">
+                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[2].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[2].body}  />
+                        </Col>
+                      </Row>
+                    </SearchResult>
+                  </Col>
+                </Row>
                 <Row>
                   <Col xs="6">
                     <Card>
                       <CardHeader>
-                        <strong>3.1 รายละเอียดราคาประเมิน</strong>
+                        <strong>3.2 รายละเอียดราคาประเมิน</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
@@ -2097,7 +2768,7 @@ class SearchDashboard extends Component {
                   <Col xs="12" md="6">
                     <Card>
                       <CardHeader>
-                        <strong>3.2 ราคาซื้อ/ขายทรัพย์ตามตลาด</strong>
+                        <strong>3.3 ราคาซื้อ/ขายทรัพย์ตามตลาด</strong>
                       </CardHeader>
                       <CardBody>
                         <Row>
@@ -2143,196 +2814,196 @@ class SearchDashboard extends Component {
                                   </Col>
                                 </Row>
                               </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
-                              <li>
-                                <Row>
-                                  <Col xs="6" className="labelSearch">
-                                    &nbsp;
-                                  </Col>
-                                  <Col xs="6">
-                                    &nbsp;
-                                  </Col>
-                                </Row>
-                              </li>
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
+                              {/*<li>*/}
+                                {/*<Row>*/}
+                                  {/*<Col xs="6" className="labelSearch">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                  {/*<Col xs="6">*/}
+                                    {/*&nbsp;*/}
+                                  {/*</Col>*/}
+                                {/*</Row>*/}
+                              {/*</li>*/}
                             </ul>
                           </Col>
                         </Row>
@@ -2593,17 +3264,19 @@ class SearchDashboard extends Component {
       );
     }
     else{
-      navButton = (<Row>
-        <div className="col-md-8">
-          {/*<button type="button" className="btn btn-primary btn-block">Search</button>*/}
-        </div>
-        <div className="col-md-2">
-          <button type="button" className="btn btn-danger btn-block" onClick={()=> {}}>ล้าง</button>
-        </div>
-        <div className="col-md-2">
-          <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>ค้นหา</button>
-        </div>
-      </Row>);
+      navButton = (
+        <Row>
+          <div className="col-md-8">
+            {/*<button type="button" className="btn btn-primary btn-block">Search</button>*/}
+          </div>
+          <div className="col-md-2">
+            <button type="button" className="btn btn-danger btn-block" onClick={()=> {}}>ล้าง</button>
+          </div>
+          <div className="col-md-2">
+            <button type="button" className="btn btn-primary btn-block" onClick={()=> { this.searchForm() }}>ค้นหา</button>
+          </div>
+        </Row>
+      );
       content = (
         <React.Fragment>
           <Row>
