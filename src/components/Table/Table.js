@@ -55,7 +55,7 @@ class ContentTable extends Component {
         let col = (e.ill)? e.n : 1;
 
         return (
-          <th rowspan={rs} colspan={col} key={i}>
+          <th rowSpan={rs} colSpan={col} key={i}>
             {e.text}
           </th>
         );
@@ -67,7 +67,7 @@ class ContentTable extends Component {
         let col = (e.ill)? e.n : 1;
 
         return (
-          <th rowspan={rs} colspan={col} key={i}>
+          <th rowSpan={rs} colSpan={col} key={i}>
             {e}
           </th>
         );
@@ -105,9 +105,9 @@ class ContentTable extends Component {
       // let dataTip = (e.dataTip);
       let td;
 
-      let listTd = e.td.map(({content, classNameTd, colspan}, l) => {
+      let listTd = e.td.map(({content, classNameTd, colspan, otherEvent}, l) => {
         if(content === 'searchIcon'){
-          let eveClick = this.props.openModalDetail || function(){};
+          let eveClick = this.props.otherEvent || function(){};
           td = (
             <React.Fragment key={l}>
               <td className={classNameTd} key={l} onClick={() => { eveClick() }}>
@@ -116,7 +116,8 @@ class ContentTable extends Component {
             </React.Fragment>
           );
         }else {
-          let eveClick = this.props.viewDetail || function(boo) {};
+          if(content === 'ดาวน์โหลด') { console.log("otherEvent :", otherEvent); }
+          let eveClick = otherEvent || this.props.viewDetail || function(boo) {};
           td = (
             <React.Fragment key={l}>
               <td className={classNameTd} key={l} colspan={colspan} onClick={() => { eveClick(true);}}>
@@ -132,16 +133,18 @@ class ContentTable extends Component {
       // attr for data tip
       // data-tip={dataTip} data-for={e.dataTipFor}
       return (
-        <tr key={i} >
+        <tr key={i} className={e.headerClass}>
           {listTd}
         </tr>
       );
     });
 
+    let hide = null;
+    if(this.props.hideFilter) hide = "hide";
 
     return (
       <React.Fragment>
-        <Row>
+        <Row className={hide}>
           <Col xs="6" md="1" style={ { textAlign: 'left', paddingTop: '5px', paddingRight: '0px', fontSize: '11px' } }>
             แสดงข้อมูล
           </Col>
@@ -174,29 +177,31 @@ class ContentTable extends Component {
           </tbody>
         </Table>
         <hr/>
-        <Pagination size="sm" className="paginationDataQuarantee justify-content-end">
-          <PaginationItem>
-            <PaginationLink previous tag="button" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink tag="button">
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink tag="button">
-            2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink tag="button">
-            3
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink next tag="button" />
-          </PaginationItem>
-        </Pagination>
+        <div className={hide}>
+          <Pagination size="sm" className="paginationDataQuarantee justify-content-end">
+            <PaginationItem>
+              <PaginationLink previous tag="button" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink tag="button">
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink tag="button">
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink tag="button">
+                3
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink next tag="button" />
+            </PaginationItem>
+          </Pagination>
+        </div>
       </React.Fragment>
     );
   }

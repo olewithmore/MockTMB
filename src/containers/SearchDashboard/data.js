@@ -91,11 +91,10 @@ detailDataGuarantee.dataLand.position = [
 
 detailDataGuarantee.detailAssetmentLand = {};
 
+
 detailDataGuarantee.detailEstimate = {};
 
-
 detailDataGuarantee.detailEstimate.valuationDetails = [];
-
 
 detailDataGuarantee.detailEstimate.valuationDetails[0] = {};
 detailDataGuarantee.detailEstimate.valuationDetails[0].header = [
@@ -124,9 +123,206 @@ detailDataGuarantee.detailEstimate.valuationDetails[0].body = [
         classNameTd: classNameTextRight
       }
     ]
+  },
+  {
+    td: [
+      {
+        content: 'ราคาประเมินครั้งก่อน เมื่อ 01/01/2018',
+        colspan: 4
+      }
+    ]
+  },
+  {
+    headerClass: "header-in-body",
+    td: [
+      {
+        content: 'ประเภท',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'ตรว./ ตรม.ละ (บาท)',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'เนื้อที่',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'จำนวนเงิน (บาท)',
+        classNameTd: classNameTextCenter
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'ที่ดิน'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'สิ่งปลูกสร้าง'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'อื่นๆ'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'รวมราคาประเมินครั้งก่อน',
+        classNameTd: classNameTextCenter,
+        colspan: 3
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'ราคาประเมินตามสภาพปัจจุบัน เมื่อ 06/01/2018',
+        colspan: 4
+      }
+    ]
+  },
+  {
+    headerClass: "header-in-body",
+    td: [
+      {
+        content: 'ประเภท',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'ตรว./ ตรม.ละ (บาท)',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'เนื้อที่',
+        classNameTd: classNameTextCenter
+      },
+      {
+        content: 'จำนวนเงิน (บาท)',
+        classNameTd: classNameTextCenter
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'ที่ดิน'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '4,000,000.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'สิ่งปลูกสร้าง'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'อื่นๆ'
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      },
+      {
+        content: '0.00',
+        classNameTd: classNameTextRight
+      }
+    ]
+  },
+  {
+    td: [
+      {
+        content: 'รวมราคาประเมินมูลค่าตลาด',
+        classNameTd: classNameTextCenter,
+        colspan: 3
+      },
+      {
+        content: '4,000,000.00',
+        classNameTd: classNameTextRight
+      }
+    ]
   }
 ];
-
 
 detailDataGuarantee.detailEstimate.valuationDetails[1] = {};
 detailDataGuarantee.detailEstimate.valuationDetails[1].header = [

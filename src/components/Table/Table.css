@@ -9,3 +9,16 @@
 .text-right {
     text-align: right;
 }
+
+.pointer {cursor: pointer;}
+
+.header-in-body {
+    color: #5c6873;
+    background-color: #e4e7ea;
+    border-color: #c8ced3;
+    font-weight: bold;
+}
+
+.hide {
+    display: none;
+}

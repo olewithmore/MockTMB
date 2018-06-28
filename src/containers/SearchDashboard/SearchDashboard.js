@@ -386,7 +386,7 @@ class SearchDashboard extends Component {
                   <i className="fa fa-database"></i> <strong>ข้อมูลหลักประกัน</strong>
                 </CardHeader>
                 <CardBody>
-                  <ContentTable headers={data.mainDataTableGuarantee.header} body={data.mainDataTableGuarantee.body} viewDetail={ this.viewDetailGuarantee } openModalDetail={ this.toggleModalGuarantee } ></ContentTable>
+                  <ContentTable headers={data.mainDataTableGuarantee.header} body={data.mainDataTableGuarantee.body} viewDetail={ this.viewDetailGuarantee } otherEvent={ this.toggleModalGuarantee } ></ContentTable>
                 </CardBody>
               </Card>
             </Col>
@@ -398,7 +398,7 @@ class SearchDashboard extends Component {
                   <i className="fa fa-database"></i> <strong>ข้อมูลนิติกรรมสัญญา</strong>
                 </CardHeader>
                 <CardBody>
-                  <ContentTable headers={data.mainDataTableContact.header} body={data.mainDataTableContact.body} viewDetail={ this.viewDetailContact } openModalDetail={ this.toggleModalContact } ></ContentTable>
+                  <ContentTable headers={data.mainDataTableContact.header} body={data.mainDataTableContact.body} viewDetail={ this.viewDetailContact } otherEvent={ this.toggleModalContact } ></ContentTable>
                 </CardBody>
               </Card>
             </Col>
@@ -2488,31 +2488,7 @@ class SearchDashboard extends Component {
                       <br/>
                       <Row>
                         <Col xs="12">
-                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[0].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[0].body}  />
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col xs="12">
-                          <strong>ราคาประเมินครั้งก่อน เมื่อ 01/01/2018</strong>
-                        </Col>
-                      </Row>
-                      <br/>
-                      <Row>
-                        <Col xs="12">
-                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[1].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[1].body}  />
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col xs="12">
-                          <strong>ราคาประเมินตามสภาพปัจจุบัน เมื่อ 06/01/2018</strong>
-                        </Col>
-                      </Row>
-                      <br/>
-                      <Row>
-                        <Col xs="12">
-                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[2].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[2].body}  />
+                          <ContentTable headers={data.detailDataGuarantee.detailEstimate.valuationDetails[0].header} body={data.detailDataGuarantee.detailEstimate.valuationDetails[0].body} hideFilter={true} />
                         </Col>
                       </Row>
                     </SearchResult>
